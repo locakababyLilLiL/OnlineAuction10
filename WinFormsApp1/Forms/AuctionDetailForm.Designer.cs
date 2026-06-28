@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1.Utils
+﻿namespace WinFormsApp1.Forms
 {
     partial class AuctionDetailForm
     {
@@ -47,7 +47,7 @@
             // 
             picProduct.Location = new Point(29, 47);
             picProduct.Name = "picProduct";
-            picProduct.Size = new Size(462, 250);
+            picProduct.Size = new Size(529, 250);
             picProduct.SizeMode = PictureBoxSizeMode.StretchImage;
             picProduct.TabIndex = 0;
             picProduct.TabStop = false;
@@ -103,6 +103,7 @@
             btnBid.TabIndex = 6;
             btnBid.Text = "Đặt giá";
             btnBid.UseVisualStyleBackColor = true;
+            btnBid.Click += BtnBid_Click;
             // 
             // timer1
             // 
@@ -112,11 +113,11 @@
             // 
             dgvHistory.AllowUserToAddRows = false;
             dgvHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHistory.Location = new Point(550, 32);
+            dgvHistory.Location = new Point(591, 47);
             dgvHistory.Name = "dgvHistory";
             dgvHistory.ReadOnly = true;
             dgvHistory.RowHeadersWidth = 62;
-            dgvHistory.Size = new Size(272, 378);
+            dgvHistory.Size = new Size(231, 363);
             dgvHistory.TabIndex = 8;
             // 
             // label2
@@ -144,6 +145,7 @@
             Controls.Add(picProduct);
             Name = "AuctionDetailForm";
             Text = "AuctionDetailForm";
+            Load += AuctionDetailForm_Load;
             ((System.ComponentModel.ISupportInitialize)picProduct).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
             ResumeLayout(false);

@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1.Services
+﻿namespace WinFormsApp1.Forms
 {
     partial class ProductListForm
     {
@@ -47,6 +47,7 @@
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
             dgvProducts.Size = new Size(800, 450);
             dgvProducts.TabIndex = 0;
+            dgvProducts.CellContentClick += dgvProducts_CellContentClick;
             // 
             // label1
             // 
@@ -66,6 +67,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 102);
             panel1.TabIndex = 2;
+            panel1.Paint += panel1_Paint;
             // 
             // ProductListForm
             // 
@@ -76,6 +78,7 @@
             Controls.Add(dgvProducts);
             Name = "ProductListForm";
             Text = "ProductListForm";
+            Load += ProductListForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

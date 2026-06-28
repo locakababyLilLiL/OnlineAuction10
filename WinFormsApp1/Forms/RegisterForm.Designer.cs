@@ -1,6 +1,6 @@
-﻿namespace WinFormsApp1.Models
+﻿namespace WinFormsApp1.Forms
 {
-    partial class txtUsename
+    partial class RegisterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,16 +43,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(149, 24);
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(174, 19);
             label1.Name = "label1";
-            label1.Size = new Size(184, 25);
+            label1.Size = new Size(350, 45);
             label1.TabIndex = 0;
             label1.Text = "ĐĂNG KÝ TÀI KHOẢN";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(54, 79);
+            label2.Location = new Point(174, 74);
             label2.Name = "label2";
             label2.Size = new Size(98, 25);
             label2.TabIndex = 1;
@@ -61,7 +63,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 119);
+            label3.Location = new Point(174, 142);
             label3.Name = "label3";
             label3.Size = new Size(138, 25);
             label3.TabIndex = 2;
@@ -70,7 +72,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(57, 161);
+            label4.Location = new Point(174, 204);
             label4.Name = "label4";
             label4.Size = new Size(95, 25);
             label4.TabIndex = 3;
@@ -86,48 +88,50 @@
             // 
             // txtFullname
             // 
-            txtFullname.Location = new Point(158, 79);
+            txtFullname.Location = new Point(174, 102);
             txtFullname.Name = "txtFullname";
-            txtFullname.Size = new Size(287, 31);
+            txtFullname.Size = new Size(350, 31);
             txtFullname.TabIndex = 5;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(158, 119);
+            txtUsername.Location = new Point(174, 170);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(287, 31);
+            txtUsername.Size = new Size(350, 31);
             txtUsername.TabIndex = 6;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(158, 161);
+            txtPassword.Location = new Point(174, 232);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(287, 31);
+            txtPassword.Size = new Size(350, 31);
             txtPassword.TabIndex = 7;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(258, 216);
+            btnBack.Location = new Point(370, 278);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(112, 34);
             btnBack.TabIndex = 8;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(111, 216);
+            btnRegister.Location = new Point(200, 278);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(112, 34);
             btnRegister.TabIndex = 9;
             btnRegister.Text = "Đăng ký";
             btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
-            // txtUsename
+            // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 322);
+            ClientSize = new Size(726, 387);
             Controls.Add(btnRegister);
             Controls.Add(btnBack);
             Controls.Add(txtPassword);
@@ -138,8 +142,9 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "txtUsename";
+            Name = "RegisterForm";
             Text = "RegisterForm";
+            Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -9,7 +9,7 @@ namespace WinFormsApp1.Utils
     public static class Session
     {
         public static int UserId;
-        public static string Token;
-        public static string FullName;
+        public static string Token = string.Empty;
+        public static string FullName = string.Empty;
     }
 }
