@@ -1,0 +1,129 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\C#\\AuctionServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\auctionitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\auctionitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|c:\\c#\\auctionserver\\auctionserver\\bid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9DD6F4-A375-46C7-8861-8EACB7C90FA8}|AuctionServer\\AuctionServer.csproj|solutionrelative:auctionserver\\bid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\Form1.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\Form1.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\Form1.cs",
+              "RelativeToolTip": "AuctionServer\\Form1.cs",
+              "ViewState": "AgIAANgAAAAAAAAAAAAAAPAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:29:36.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\Form1.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\Form1.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\Form1.cs [Design]",
+              "RelativeToolTip": "AuctionServer\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:12:15.23Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuctionItem.cs",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\AuctionItem.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\AuctionItem.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\AuctionItem.cs",
+              "RelativeToolTip": "AuctionServer\\AuctionItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:21:18.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\User.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\User.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\User.cs",
+              "RelativeToolTip": "AuctionServer\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:20:36.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\Program.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\Program.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\Program.cs",
+              "RelativeToolTip": "AuctionServer\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:25:33.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Bid.cs",
+              "DocumentMoniker": "C:\\C#\\AuctionServer\\AuctionServer\\Bid.cs",
+              "RelativeDocumentMoniker": "AuctionServer\\Bid.cs",
+              "ToolTip": "C:\\C#\\AuctionServer\\AuctionServer\\Bid.cs",
+              "RelativeToolTip": "AuctionServer\\Bid.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T05:22:56.321Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
