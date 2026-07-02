@@ -21,6 +21,7 @@ namespace AuctionServer
         TcpListener server;
         Thread serverThread;
 
+        List<TcpClient> clients = new List<TcpClient>();
         List<User> users = new List<User>();
         List<Bid> bidHistory = new List<Bid>();
 
@@ -63,6 +64,8 @@ namespace AuctionServer
             {
                 TcpClient client = server.AcceptTcpClient();
 
+                clients.Add(client);
+
                 Invoke(new Action(() =>
                 {
                     rtbLog.AppendText("Có Client kết nối!\n");
@@ -76,134 +79,184 @@ namespace AuctionServer
         private void HandleClient(TcpClient client)
         {
             NetworkStream stream = client.GetStream();
-
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[4096];
 
             while (true)
             {
-                int n = stream.Read(buffer, 0, buffer.Length);
+                int n;
 
-                if (n == 0)
+                try
+                {
+                    n = stream.Read(buffer, 0, buffer.Length);
+                }
+                catch
+                {
+                    break;
+                }
+
+                if (n <= 0)
                     break;
 
                 string message = Encoding.UTF8.GetString(buffer, 0, n);
 
                 Invoke(new Action(() =>
                 {
-                    rtbLog.AppendText("Client: " + message + "\n");
+                    rtbLog.AppendText("Client: " + message + Environment.NewLine);
                 }));
 
                 string[] data = message.Split('|');
 
                 string command = data[0];
 
-                //==== REGISTER =====
+
+                // REGISTER
+
                 if (command == "REGISTER")
                 {
-                    User newUser = new User();
+                    string username = data[1];
+                    string password = data[2];
 
-                    newUser.Username = data[1];
-                    newUser.Password = data[2];
+                    bool exist = users.Any(x => x.Username == username);
 
-                    users.Add(newUser);
-
-                    byte[] sendRegister = Encoding.UTF8.GetBytes("Đăng ký thành công");
-
-                    stream.Write(sendRegister, 0, sendRegister.Length);
-
-                    continue;
-                }
-
-                //====LOGIN ===
-                if (command == "LOGIN")
-                {
-                    bool ok = false;
-
-                    foreach (User user in users)
+                    if (exist)
                     {
-                        if (user.Username == data[1] &&
-                            user.Password == data[2])
+                        Send(stream, "Tên đăng nhập đã tồn tại");
+                    }
+                    else
+                    {
+                        users.Add(new User
                         {
-                            ok = true;
-                            break;
-                        }
+                            Username = username,
+                            Password = password
+                        });
+
+                        Send(stream, "Đăng ký thành công");
                     }
 
-                    string reply;
+                    continue;
+                }
+
+                //---------------------------------------
+                // LOGIN
+                //---------------------------------------
+                if (command == "LOGIN")
+                {
+                    bool ok = users.Any(x =>
+                            x.Username == data[1] &&
+                            x.Password == data[2]);
 
                     if (ok)
-                        reply = "Đăng nhập thành công";
+                        Send(stream, "Đăng nhập thành công");
                     else
-                        reply = "Sai tài khoản";
-
-                    byte[] sendLogin = Encoding.UTF8.GetBytes(reply);
-
-                    stream.Write(sendLogin, 0, sendLogin.Length);
+                        Send(stream, "Sai tài khoản");
 
                     continue;
                 }
 
-                //view item 
-                if (command == "VIEW")
+                //---------------------------------------
+                // JOIN
+                //---------------------------------------
+                if (command == "JOIN")
                 {
-                    string info =
-                        item.ItemName + "|" +
-                        item.CurrentPrice + "|" +
-                        item.HighestBidder;
-
-                    byte[] sendView = Encoding.UTF8.GetBytes(info);
-
-                    stream.Write(sendView, 0, sendView.Length);
-
+                    Send(stream, $"JOIN|{item.CurrentPrice}");
                     continue;
                 }
-                //====== BID =
+
+                //---------------------------------------
+                // BID
+                //---------------------------------------
                 if (command == "BID")
                 {
                     if (auctionEnded)
                     {
-                        byte[] send = Encoding.UTF8.GetBytes("Phiên đấu giá đã kết thúc");
-                        stream.Write(send, 0, send.Length);
+                        Send(stream, "END|" + item.HighestBidder);
                         continue;
                     }
-                    string username = data[1];
-                    int newPrice = int.Parse(data[2]);
 
-                    if (newPrice > item.CurrentPrice)
+                    if (data.Length < 4)
                     {
-                        item.CurrentPrice = newPrice;
-                        item.HighestBidder = username;
-
-                        Bid bid = new Bid();
-                        bid.Username = username;
-                        bid.Price = newPrice;
-                        bid.Time = DateTime.Now;
-
-                        bidHistory.Add(bid);
-
-                        Invoke(new Action(() =>
-                        {
-                            lblPrice.Text = item.CurrentPrice.ToString("N0") + " VNĐ";
-                            lblWinner.Text = item.HighestBidder;
-
-                            rtbLog.AppendText(username + " đặt giá: "
-                                + newPrice.ToString("N0") + " VNĐ\n");
-                        }));
-
-                        byte[] sendBid = Encoding.UTF8.GetBytes("Đặt giá thành công");
-                        stream.Write(sendBid, 0, sendBid.Length);
+                        Send(stream, "ERROR|Sai dữ liệu");
+                        continue;
                     }
-                    else
+
+                    string auctionId = data[1];
+
+                    string username = data[2];
+
+                    int newPrice;
+
+                    if (!int.TryParse(data[3], out newPrice))
                     {
-                        byte[] sendBid = Encoding.UTF8.GetBytes("Giá phải lớn hơn giá hiện tại");
-                        stream.Write(sendBid, 0, sendBid.Length);
+                        Send(stream, "ERROR|Giá không hợp lệ");
+                        continue;
                     }
+
+                    if (newPrice <= item.CurrentPrice)
+                    {
+                        Send(stream, "ERROR|Giá phải lớn hơn giá hiện tại");
+                        continue;
+                    }
+
+                    item.CurrentPrice = newPrice;
+                    item.HighestBidder = username;
+
+                    Bid bid = new Bid();
+
+                    bid.Username = username;
+                    bid.Price = newPrice;
+                    bid.Time = DateTime.Now;
+
+                    bidHistory.Add(bid);
+
+                    Invoke(new Action(() =>
+                    {
+                        lblPrice.Text = item.CurrentPrice.ToString("N0") + " VNĐ";
+                        lblWinner.Text = item.HighestBidder;
+
+                        rtbLog.AppendText(
+                            username +
+                            " đặt giá " +
+                            item.CurrentPrice.ToString("N0") +
+                            " VNĐ" +
+                            Environment.NewLine);
+                    }));
+
+                    Broadcast(
+                             $"BID|{username}|{item.CurrentPrice}");
 
                     continue;
                 }
             }
 
             client.Close();
+        }
+        // hàm send dữ liệu đến client
+
+        private void Send(NetworkStream stream, string msg)
+
+
+        {
+            byte[] data = Encoding.UTF8.GetBytes(msg);
+            stream.Write(data, 0, data.Length);
+        }
+        // hàm broadcast dữ liệu đến tất cả client
+        private void Broadcast(string message)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(message);
+
+            foreach (TcpClient c in clients.ToList())
+            {
+                try
+                {
+                    NetworkStream s = c.GetStream();
+
+                    s.Write(data, 0, data.Length);
+                }
+                catch
+                {
+                    clients.Remove(c);
+                }
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -221,9 +274,13 @@ namespace AuctionServer
 
                 auctionEnded = true;
 
-                MessageBox.Show(
-                    "Người thắng: " + item.HighestBidder +
-                    "\nGiá: " + item.CurrentPrice.ToString("N0") + " VNĐ");
+                rtbLog.AppendText(Environment.NewLine);
+                rtbLog.AppendText("===== PHIÊN ĐẤU GIÁ KẾT THÚC =====");
+                rtbLog.AppendText(Environment.NewLine);
+                rtbLog.AppendText("Người thắng: " + item.HighestBidder);
+                rtbLog.AppendText(Environment.NewLine);
+                rtbLog.AppendText("Giá thắng: " + item.CurrentPrice.ToString("N0"));
+                rtbLog.AppendText(Environment.NewLine);
 
                 foreach (Bid b in bidHistory)
                 {
@@ -234,7 +291,7 @@ namespace AuctionServer
                         b.Time +
                         Environment.NewLine);
                 }
-
+                rtbLog.AppendText("Phiên đấu giá kết thúc\n");
                 rtbLog.AppendText("\nĐã lưu lịch sử đấu giá.\n");
             }
         }

@@ -45,6 +45,8 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Red;
+            this.lblTitle.ForeColor = System.Drawing.Color.Black;
             this.lblTitle.Location = new System.Drawing.Point(230, 19);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(119, 16);

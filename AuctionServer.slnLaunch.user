@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "AuctionServer\\AuctionServer.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\..\\Users\\AM\\Downloads\\OnlineAuction10-master\\OnlineAuction10-master\\AuctionClient\\AuctionClient.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
