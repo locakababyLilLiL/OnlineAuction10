@@ -32,11 +32,19 @@ namespace AuctionClient
 
             while (true)
             {
-                int bytes = stream.Read(buffer, 0, buffer.Length);
-                if (bytes > 0)
+                try
                 {
+                    int bytes = stream.Read(buffer, 0, buffer.Length);
+
+                    if (bytes <= 0)
+                        break;
+
                     string msg = Encoding.UTF8.GetString(buffer, 0, bytes);
                     OnMessageReceived?.Invoke(msg);
+                }
+                catch
+                {
+                    break;
                 }
             }
         }

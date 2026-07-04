@@ -32,34 +32,68 @@ namespace AuctionClient.Forms
 
         private void Tcp_OnMessageReceived(string msg)
         {
-            Invoke(new Action(() =>
+            try
             {
-                ProcessMessage(msg);
-            }));
+                if (this.IsDisposed || !this.IsHandleCreated)
+                    return;
+
+                this.Invoke(new Action(() =>
+                {
+                    ProcessMessage(msg);
+                }));
+            }
+            catch
+            {
+               
+            }
         }
 
         private void ProcessMessage(string msg)
         {
             string[] parts = msg.Split('|');
 
+            if (parts.Length == 0)
+                return;
+
             switch (parts[0])
             {
                 case "JOIN":
-                    lblPrice.Text = parts[1];
+                    if (parts.Length >= 2)
+                    {
+                        lblPrice.Text = parts[1];
+                    }
                     break;
 
                 case "BID":
-                    lblPrice.Text = parts[2];
-                    lstHistory.Items.Add($"{parts[1]} : {parts[2]}");
+                    if (parts.Length >= 3)
+                    {
+                        lblPrice.Text = parts[2];
+                        lstHistory.Items.Add(parts[1] + " : " + parts[2]);
+                    }
                     break;
 
                 case "ERROR":
-                    MessageBox.Show(parts[1]);
+                    if (parts.Length >= 2)
+                    {
+                        MessageBox.Show(parts[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra!");
+                    }
                     break;
 
                 case "END":
                     btnBid.Enabled = false;
-                    MessageBox.Show("Winner: " + parts[1]);
+
+                    if (parts.Length >= 2)
+                    {
+                        MessageBox.Show("Winner: " + parts[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phiên đấu giá đã kết thúc!");
+                    }
                     break;
             }
         }
@@ -73,7 +107,7 @@ namespace AuctionClient.Forms
                 return;
             }
 
-            if (!decimal.TryParse(txtBid.Text, out decimal bidPrice))
+            if (!int.TryParse(txtBid.Text, out int bidPrice))
             {
                 MessageBox.Show("Giá đấu không hợp lệ!");
                 txtBid.SelectAll();
