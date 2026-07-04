@@ -295,6 +295,34 @@ namespace AuctionServer
                 rtbLog.AppendText("\nĐã lưu lịch sử đấu giá.\n");
             }
         }
-        
+
+        private void rtbLog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelLog_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                timer1.Stop();
+
+                if (server != null)
+                    server.Stop();
+
+                rtbLog.AppendText("Server đã dừng.\n");
+            }
+            catch
+            {
+
+            }
+        }
+
+       
     }
 }
