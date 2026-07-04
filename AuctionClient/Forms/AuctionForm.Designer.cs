@@ -48,7 +48,7 @@
             // 
             // txtBid
             // 
-            this.txtBid.Location = new System.Drawing.Point(32, 224);
+            this.txtBid.Location = new System.Drawing.Point(32, 222);
             this.txtBid.Name = "txtBid";
             this.txtBid.Size = new System.Drawing.Size(346, 26);
             this.txtBid.TabIndex = 3;

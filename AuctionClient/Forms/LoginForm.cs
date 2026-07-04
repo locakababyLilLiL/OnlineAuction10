@@ -38,6 +38,7 @@ namespace AuctionClient.Forms
         {
             RegisterForm f = new RegisterForm();
             f.Show();
+            this.Hide();
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
