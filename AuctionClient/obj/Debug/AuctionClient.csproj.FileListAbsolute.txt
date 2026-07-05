@@ -7,3 +7,8 @@ C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.csproj.GenerateResourc
 C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.csproj.CoreCompileInputs.cache
 C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.exe
 C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.pdb
+C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.Forms.AuctionForm.resources
+C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.Forms.LoginForm.resources
+C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.Forms.MainForm.resources
+C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.Forms.RegisterForm.resources
+C:\C#\AuctionServer\AuctionClient\obj\Debug\AuctionClient.Form1.resources
