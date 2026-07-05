@@ -57,7 +57,7 @@
             this.dgvAuctions.Name = "dgvAuctions";
             this.dgvAuctions.RowHeadersWidth = 62;
             this.dgvAuctions.RowTemplate.Height = 28;
-            this.dgvAuctions.Size = new System.Drawing.Size(882, 439);
+            this.dgvAuctions.Size = new System.Drawing.Size(882, 457);
             this.dgvAuctions.TabIndex = 1;
             // 
             // lblUser
@@ -74,7 +74,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.Coral;
+            this.btnBack.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlText;

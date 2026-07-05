@@ -77,15 +77,16 @@
             this.panelInfo.Controls.Add(this.lblPrice);
             this.panelInfo.Controls.Add(this.label2);
             this.panelInfo.Controls.Add(this.label1);
-            this.panelInfo.Location = new System.Drawing.Point(154, 98);
+            this.panelInfo.Location = new System.Drawing.Point(150, 98);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(320, 382);
+            this.panelInfo.Size = new System.Drawing.Size(324, 382);
             this.panelInfo.TabIndex = 1;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(77, 324);
+            this.lblTime.ForeColor = System.Drawing.Color.Gold;
+            this.lblTime.Location = new System.Drawing.Point(92, 315);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(130, 48);
             this.lblTime.TabIndex = 6;
@@ -94,7 +95,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 284);
+            this.label4.Location = new System.Drawing.Point(22, 267);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(280, 48);
             this.label4.TabIndex = 5;
@@ -103,7 +104,8 @@
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
-            this.lblWinner.Location = new System.Drawing.Point(45, 235);
+            this.lblWinner.ForeColor = System.Drawing.Color.Gold;
+            this.lblWinner.Location = new System.Drawing.Point(65, 210);
             this.lblWinner.Name = "lblWinner";
             this.lblWinner.Size = new System.Drawing.Size(177, 48);
             this.lblWinner.TabIndex = 4;
@@ -112,7 +114,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 195);
+            this.label3.Location = new System.Drawing.Point(22, 153);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(217, 48);
             this.label3.TabIndex = 3;
@@ -124,18 +126,18 @@
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblPrice.ForeColor = System.Drawing.Color.Gold;
-            this.lblPrice.Location = new System.Drawing.Point(10, 141);
+            this.lblPrice.Location = new System.Drawing.Point(65, 105);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(297, 48);
+            this.lblPrice.Size = new System.Drawing.Size(62, 48);
             this.lblPrice.TabIndex = 2;
-            this.lblPrice.Text = "10.000.000 VNĐ";
+            this.lblPrice.Text = "0$";
             this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.label2.Location = new System.Drawing.Point(3, 85);
+            this.label2.Location = new System.Drawing.Point(22, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(286, 48);
             this.label2.TabIndex = 1;
@@ -147,7 +149,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.ForeColor = System.Drawing.Color.Gold;
-            this.label1.Location = new System.Drawing.Point(3, 15);
+            this.label1.Location = new System.Drawing.Point(43, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(215, 45);
             this.label1.TabIndex = 0;
@@ -192,12 +194,11 @@
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(83)))));
-            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnStart.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(480, 504);
+            this.btnStart.Location = new System.Drawing.Point(506, 486);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(197, 80);
+            this.btnStart.Size = new System.Drawing.Size(197, 57);
             this.btnStart.TabIndex = 2;
             this.btnStart.Text = "▶ Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -206,9 +207,11 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnStop.Location = new System.Drawing.Point(724, 504);
+            this.btnStop.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStop.Location = new System.Drawing.Point(756, 486);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(155, 80);
+            this.btnStop.Size = new System.Drawing.Size(206, 57);
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "■ Stop";
             this.btnStop.UseVisualStyleBackColor = false;
