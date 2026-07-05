@@ -56,13 +56,16 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Bahnschrift", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblTitle.Location = new System.Drawing.Point(660, 53);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblTitle.Location = new System.Drawing.Point(213, 9);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(428, 45);
+            this.lblTitle.Size = new System.Drawing.Size(502, 48);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "ONLINE AUCTION SERVER";
+            this.lblTitle.Text = "🔴  LIVE AUCTION SERVER";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panelInfo
             // 
@@ -74,53 +77,54 @@
             this.panelInfo.Controls.Add(this.lblPrice);
             this.panelInfo.Controls.Add(this.label2);
             this.panelInfo.Controls.Add(this.label1);
-            this.panelInfo.Location = new System.Drawing.Point(227, 110);
+            this.panelInfo.Location = new System.Drawing.Point(204, 98);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(300, 430);
+            this.panelInfo.Size = new System.Drawing.Size(270, 382);
             this.panelInfo.TabIndex = 1;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(11, 307);
+            this.lblTime.Location = new System.Drawing.Point(77, 324);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(113, 45);
+            this.lblTime.Size = new System.Drawing.Size(109, 40);
             this.lblTime.TabIndex = 6;
             this.lblTime.Text = "label5";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 262);
+            this.label4.Location = new System.Drawing.Point(8, 284);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(192, 45);
+            this.label4.Size = new System.Drawing.Size(231, 40);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Thời gian : ";
+            this.label4.Text = "⏱ Countdown";
             // 
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
-            this.lblWinner.Location = new System.Drawing.Point(11, 217);
+            this.lblWinner.Location = new System.Drawing.Point(45, 235);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(155, 45);
+            this.lblWinner.Size = new System.Drawing.Size(145, 40);
             this.lblWinner.TabIndex = 4;
             this.lblWinner.Text = "Chưa có ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 172);
+            this.label3.Location = new System.Drawing.Point(10, 195);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(262, 45);
+            this.label3.Size = new System.Drawing.Size(180, 40);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Người dẫn đầu:";
+            this.label3.Text = "👑 Winner ";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblPrice.ForeColor = System.Drawing.Color.Gold;
-            this.lblPrice.Location = new System.Drawing.Point(12, 131);
+            this.lblPrice.Location = new System.Drawing.Point(10, 141);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(244, 41);
             this.lblPrice.TabIndex = 2;
@@ -130,31 +134,31 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.label2.Location = new System.Drawing.Point(3, 86);
+            this.label2.Location = new System.Drawing.Point(3, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(204, 45);
+            this.label2.Size = new System.Drawing.Size(236, 40);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Giá hiện tại:";
+            this.label2.Text = "💰 Current Bid";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.ForeColor = System.Drawing.Color.Gold;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 38);
+            this.label1.Size = new System.Drawing.Size(183, 38);
             this.label1.TabIndex = 0;
-            this.label1.Text = "SẢN PHẨM";
+            this.label1.Text = " 📦 Product ";
             // 
             // panelLog
             // 
             this.panelLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.panelLog.Controls.Add(this.rtbLog);
             this.panelLog.Controls.Add(this.label5);
-            this.panelLog.Location = new System.Drawing.Point(533, 110);
+            this.panelLog.Location = new System.Drawing.Point(480, 98);
             this.panelLog.Name = "panelLog";
-            this.panelLog.Size = new System.Drawing.Size(620, 430);
+            this.panelLog.Size = new System.Drawing.Size(558, 382);
             this.panelLog.TabIndex = 0;
             this.panelLog.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLog_Paint);
             // 
@@ -164,10 +168,10 @@
             this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbLog.ForeColor = System.Drawing.Color.Lime;
-            this.rtbLog.Location = new System.Drawing.Point(0, 45);
+            this.rtbLog.Location = new System.Drawing.Point(0, 40);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;
-            this.rtbLog.Size = new System.Drawing.Size(620, 385);
+            this.rtbLog.Size = new System.Drawing.Size(558, 342);
             this.rtbLog.TabIndex = 1;
             this.rtbLog.Text = "";
             this.rtbLog.TextChanged += new System.EventHandler(this.rtbLog_TextChanged);
@@ -179,46 +183,48 @@
             this.label5.ForeColor = System.Drawing.Color.Gold;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(293, 45);
+            this.label5.Size = new System.Drawing.Size(193, 40);
             this.label5.TabIndex = 0;
-            this.label5.Text = "NHẬT KÝ SERVER";
+            this.label5.Text = "📜 Live Log";
             // 
             // btnStart
             // 
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(83)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(132, 679);
+            this.btnStart.Location = new System.Drawing.Point(253, 598);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(219, 90);
+            this.btnStart.Size = new System.Drawing.Size(197, 80);
             this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Text = "▶ Start";
+            this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(432, 679);
+            this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnStop.Location = new System.Drawing.Point(601, 598);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(172, 90);
+            this.btnStop.Size = new System.Drawing.Size(155, 80);
             this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Text = "■ Stop";
+            this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 45F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 40F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ClientSize = new System.Drawing.Size(1732, 938);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panelLog);
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Margin = new System.Windows.Forms.Padding(8);
+            this.Font = new System.Drawing.Font("Bahnschrift", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Margin = new System.Windows.Forms.Padding(7);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Online Auction Server";
