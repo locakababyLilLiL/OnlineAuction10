@@ -62,7 +62,7 @@
             this.lblTitle.Location = new System.Drawing.Point(213, 9);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(502, 48);
+            this.lblTitle.Size = new System.Drawing.Size(605, 58);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "🔴  LIVE AUCTION SERVER";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -77,9 +77,9 @@
             this.panelInfo.Controls.Add(this.lblPrice);
             this.panelInfo.Controls.Add(this.label2);
             this.panelInfo.Controls.Add(this.label1);
-            this.panelInfo.Location = new System.Drawing.Point(204, 98);
+            this.panelInfo.Location = new System.Drawing.Point(154, 98);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(270, 382);
+            this.panelInfo.Size = new System.Drawing.Size(320, 382);
             this.panelInfo.TabIndex = 1;
             // 
             // lblTime
@@ -87,7 +87,7 @@
             this.lblTime.AutoSize = true;
             this.lblTime.Location = new System.Drawing.Point(77, 324);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(109, 40);
+            this.lblTime.Size = new System.Drawing.Size(130, 48);
             this.lblTime.TabIndex = 6;
             this.lblTime.Text = "label5";
             // 
@@ -96,7 +96,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 284);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(231, 40);
+            this.label4.Size = new System.Drawing.Size(280, 48);
             this.label4.TabIndex = 5;
             this.label4.Text = "⏱ Countdown";
             // 
@@ -105,7 +105,7 @@
             this.lblWinner.AutoSize = true;
             this.lblWinner.Location = new System.Drawing.Point(45, 235);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(145, 40);
+            this.lblWinner.Size = new System.Drawing.Size(177, 48);
             this.lblWinner.TabIndex = 4;
             this.lblWinner.Text = "Chưa có ";
             // 
@@ -114,7 +114,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 195);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 40);
+            this.label3.Size = new System.Drawing.Size(217, 48);
             this.label3.TabIndex = 3;
             this.label3.Text = "👑 Winner ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -126,9 +126,10 @@
             this.lblPrice.ForeColor = System.Drawing.Color.Gold;
             this.lblPrice.Location = new System.Drawing.Point(10, 141);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(244, 41);
+            this.lblPrice.Size = new System.Drawing.Size(297, 48);
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "10.000.000 VNĐ";
+            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
             // 
             // label2
             // 
@@ -136,9 +137,10 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.label2.Location = new System.Drawing.Point(3, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(236, 40);
+            this.label2.Size = new System.Drawing.Size(286, 48);
             this.label2.TabIndex = 1;
             this.label2.Text = "💰 Current Bid";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -147,7 +149,7 @@
             this.label1.ForeColor = System.Drawing.Color.Gold;
             this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(183, 38);
+            this.label1.Size = new System.Drawing.Size(215, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = " 📦 Product ";
             // 
@@ -168,10 +170,10 @@
             this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbLog.ForeColor = System.Drawing.Color.Lime;
-            this.rtbLog.Location = new System.Drawing.Point(0, 40);
+            this.rtbLog.Location = new System.Drawing.Point(0, 48);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;
-            this.rtbLog.Size = new System.Drawing.Size(558, 342);
+            this.rtbLog.Size = new System.Drawing.Size(558, 334);
             this.rtbLog.TabIndex = 1;
             this.rtbLog.Text = "";
             this.rtbLog.TextChanged += new System.EventHandler(this.rtbLog_TextChanged);
@@ -183,7 +185,7 @@
             this.label5.ForeColor = System.Drawing.Color.Gold;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(193, 40);
+            this.label5.Size = new System.Drawing.Size(232, 48);
             this.label5.TabIndex = 0;
             this.label5.Text = "📜 Live Log";
             // 
@@ -193,7 +195,7 @@
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(253, 598);
+            this.btnStart.Location = new System.Drawing.Point(480, 504);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(197, 80);
             this.btnStart.TabIndex = 2;
@@ -204,7 +206,7 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnStop.Location = new System.Drawing.Point(601, 598);
+            this.btnStop.Location = new System.Drawing.Point(724, 504);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(155, 80);
             this.btnStop.TabIndex = 3;
@@ -214,10 +216,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 40F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(1732, 938);
+            this.ClientSize = new System.Drawing.Size(1097, 647);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panelLog);

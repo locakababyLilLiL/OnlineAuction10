@@ -36,12 +36,19 @@ namespace AuctionClient.Forms
                 int bytes = stream.Read(buffer, 0, buffer.Length);
                 string response = Encoding.UTF8.GetString(buffer, 0, bytes);
 
-                MessageBox.Show("Đăng ký thành công!");
+                if (response.StartsWith("REGISTER_OK"))
+                {
+                    MessageBox.Show(response.Replace("REGISTER_OK|", ""));
 
-                LoginForm login = new LoginForm();
-                login.Show();
+                    LoginForm login = new LoginForm();
+                    login.Show();
 
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(response.Replace("ERROR|", ""));
+                }
             }
             catch (Exception ex)
             {

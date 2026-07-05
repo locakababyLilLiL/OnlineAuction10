@@ -28,6 +28,8 @@ namespace AuctionServer
         AuctionItem item = new AuctionItem();
 
         bool auctionEnded = false;
+        bool isRunning = false;
+        readonly object clientsLock = new object();
         public Form1()
         {
             InitializeComponent();
@@ -40,40 +42,100 @@ namespace AuctionServer
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Interval = 1000;
-            timer1.Start();
+            btnStop.Enabled = false;
 
+            lblPrice.Text = item.CurrentPrice.ToString("N0") + " VNĐ";
+            lblWinner.Text = item.HighestBidder;
+            lblTime.Text = "05:00";
+
+            AddLog("Server chưa chạy. Bấm Start để bắt đầu.");
         }
+        private void AddLog(string text)
+        {
+            if (rtbLog.InvokeRequired)
+            {
+                rtbLog.Invoke(new Action(() => AddLog(text)));
+                return;
+            }
 
+            rtbLog.AppendText(DateTime.Now.ToString("HH:mm:ss") + " - " + text + Environment.NewLine);
+            rtbLog.ScrollToCaret();
+        }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            server = new TcpListener(IPAddress.Any, 9999);
-            server.Start();
+            try
+            {
+                if (isRunning)
+                {
+                    AddLog("Server đang chạy rồi.");
+                    return;
+                }
 
-            MessageBox.Show("Server đã khởi động!");
+                server = new TcpListener(IPAddress.Any, 9999);
+                server.Start();
 
-            serverThread = new Thread(ListenClient);
-            serverThread.IsBackground = true;
-            serverThread.Start();
+                isRunning = true;
+                auctionEnded = false;
 
-            timer1.Interval = 1000;
-            timer1.Start();
+                item.EndTime = DateTime.Now.AddMinutes(5);
+                item.CurrentPrice = 10000;
+                item.HighestBidder = "Chưa có";
+
+                lblPrice.Text = "💰 Giá hiện tại : " + item.CurrentPrice.ToString("N0") + " $";
+                lblWinner.Text = item.HighestBidder;
+                lblTime.Text = "05:00";
+
+                AddLog("Server đã khởi động trên port 9999.");
+                AddLog("Đang chờ Client kết nối...");
+
+                serverThread = new Thread(ListenClient);
+                serverThread.IsBackground = true;
+                serverThread.Start();
+
+                timer1.Start();
+
+                btnStart.Enabled = false;
+                btnStop.Enabled = true;
+            }
+            catch (SocketException ex)
+            {
+                AddLog("Không Start được Server: " + ex.Message);
+                MessageBox.Show("Không Start được Server. Có thể port 9999 đang bị dùng.");
+            }
+            catch (Exception ex)
+            {
+                AddLog("Lỗi Start Server: " + ex.Message);
+                MessageBox.Show("Lỗi Start Server: " + ex.Message);
+            }
         }
         private void ListenClient()
         {
-            while (true)
+            while (isRunning)
             {
-                TcpClient client = server.AcceptTcpClient();
-
-                clients.Add(client);
-
-                Invoke(new Action(() =>
+                try
                 {
-                    rtbLog.AppendText("Có Client kết nối!\n");
-                }));
+                    TcpClient client = server.AcceptTcpClient();
 
-                Thread clientThread = new Thread(() => HandleClient(client));
-                clientThread.IsBackground = true;
-                clientThread.Start();
+                    lock (clientsLock)
+                    {
+                        clients.Add(client);
+                    }
+
+                    AddLog("Có Client kết nối: " + client.Client.RemoteEndPoint);
+
+                    Thread clientThread = new Thread(() => HandleClient(client));
+                    clientThread.IsBackground = true;
+                    clientThread.Start();
+                }
+                catch
+                {
+                    if (isRunning)
+                    {
+                        AddLog("Lỗi khi nhận Client.");
+                    }
+
+                    break;
+                }
             }
         }
         private void HandleClient(TcpClient client)
@@ -113,6 +175,12 @@ namespace AuctionServer
 
                 if (command == "REGISTER")
                 {
+                    if (data.Length < 3)
+                    {
+                        Send(stream, "ERROR|Thiếu username hoặc password");
+                        continue;
+                    }
+
                     string username = data[1];
                     string password = data[2];
 
@@ -120,7 +188,8 @@ namespace AuctionServer
 
                     if (exist)
                     {
-                        Send(stream, "Tên đăng nhập đã tồn tại");
+                        Send(stream, "ERROR|Tên đăng nhập đã tồn tại");
+                        AddLog("Đăng ký thất bại, tài khoản đã tồn tại: " + username);
                     }
                     else
                     {
@@ -130,7 +199,8 @@ namespace AuctionServer
                             Password = password
                         });
 
-                        Send(stream, "Đăng ký thành công");
+                        Send(stream, "REGISTER_OK|Đăng ký thành công");
+                        AddLog("Đăng ký tài khoản mới: " + username);
                     }
 
                     continue;
@@ -141,14 +211,29 @@ namespace AuctionServer
                 //---------------------------------------
                 if (command == "LOGIN")
                 {
+                    if (data.Length < 3)
+                    {
+                        Send(stream, "ERROR|Thiếu username hoặc password");
+                        continue;
+                    }
+
+                    string username = data[1];
+                    string password = data[2];
+
                     bool ok = users.Any(x =>
-                            x.Username == data[1] &&
-                            x.Password == data[2]);
+                        x.Username == username &&
+                        x.Password == password);
 
                     if (ok)
-                        Send(stream, "Đăng nhập thành công");
+                    {
+                        Send(stream, "LOGIN_OK|Đăng nhập thành công");
+                        AddLog("Đăng nhập thành công: " + username);
+                    }
                     else
-                        Send(stream, "Sai tài khoản");
+                    {
+                        Send(stream, "ERROR|Sai tài khoản hoặc mật khẩu");
+                        AddLog("Đăng nhập thất bại: " + username);
+                    }
 
                     continue;
                 }
@@ -158,7 +243,18 @@ namespace AuctionServer
                 //---------------------------------------
                 if (command == "JOIN")
                 {
-                    Send(stream, $"JOIN|{item.CurrentPrice}");
+                    string timeText = lblTime.Text;
+
+                    if (data.Length >= 3)
+                    {
+                        AddLog(data[2] + " tham gia phiên đấu giá ID: " + data[1]);
+                    }
+                    else
+                    {
+                        AddLog("Có client tham gia phiên đấu giá.");
+                    }
+
+                    Send(stream, $"JOIN|{item.CurrentPrice}|{timeText}");
                     continue;
                 }
 
@@ -206,20 +302,17 @@ namespace AuctionServer
                     bid.Price = newPrice;
                     bid.Time = DateTime.Now;
 
-                    bidHistory.Add(bid);
-
                     Invoke(new Action(() =>
                     {
-                        lblPrice.Text = item.CurrentPrice.ToString("N0") + " VNĐ";
+                        lblPrice.Text = item.CurrentPrice.ToString("N0") + " $";
                         lblWinner.Text = item.HighestBidder;
-
-                        rtbLog.AppendText(
-                            username +
-                            " đặt giá " +
-                            item.CurrentPrice.ToString("N0") +
-                            " VNĐ" +
-                            Environment.NewLine);
                     }));
+
+                    AddLog(username + " đặt giá " + item.CurrentPrice.ToString("N0") + " $");
+
+                    bidHistory.Add(bid);
+
+                    AddLog("Client gửi: " + message);
 
                     Broadcast(
                              $"BID|{username}|{item.CurrentPrice}");
@@ -265,22 +358,26 @@ namespace AuctionServer
 
             if (t.TotalSeconds > 0)
             {
-                lblTime.Text = t.Minutes + ":" + t.Seconds.ToString("00");
+                string timeText = t.Minutes.ToString("00") + ":" + t.Seconds.ToString("00");
+                lblTime.Text = timeText;
+
+                Broadcast("TIME|" + timeText);
             }
             else
             {
                 lblTime.Text = "Đã kết thúc";
                 timer1.Stop();
 
+                if (auctionEnded)
+                    return;
+
                 auctionEnded = true;
 
-                rtbLog.AppendText(Environment.NewLine);
-                rtbLog.AppendText("===== PHIÊN ĐẤU GIÁ KẾT THÚC =====");
-                rtbLog.AppendText(Environment.NewLine);
-                rtbLog.AppendText("Người thắng: " + item.HighestBidder);
-                rtbLog.AppendText(Environment.NewLine);
-                rtbLog.AppendText("Giá thắng: " + item.CurrentPrice.ToString("N0"));
-                rtbLog.AppendText(Environment.NewLine);
+                AddLog("===== PHIÊN ĐẤU GIÁ KẾT THÚC =====");
+                AddLog("Người thắng: " + item.HighestBidder);
+                AddLog("Giá thắng: " + item.CurrentPrice.ToString("N0") + " $");
+
+                Broadcast("END|" + item.HighestBidder);
 
                 foreach (Bid b in bidHistory)
                 {
@@ -291,8 +388,8 @@ namespace AuctionServer
                         b.Time +
                         Environment.NewLine);
                 }
-                rtbLog.AppendText("Phiên đấu giá kết thúc\n");
-                rtbLog.AppendText("\nĐã lưu lịch sử đấu giá.\n");
+
+                AddLog("Đã lưu lịch sử đấu giá.");
             }
         }
 
@@ -310,20 +407,53 @@ namespace AuctionServer
         {
             try
             {
+                isRunning = false;
                 timer1.Stop();
 
+                lock (clientsLock)
+                {
+                    foreach (TcpClient c in clients.ToList())
+                    {
+                        try
+                        {
+                            c.Close();
+                        }
+                        catch
+                        {
+                        }
+                    }
+
+                    clients.Clear();
+                }
+
                 if (server != null)
+                {
                     server.Stop();
+                    server = null;
+                }
 
-                rtbLog.AppendText("Server đã dừng.\n");
+                AddLog("Server đã dừng.");
+
+                btnStart.Enabled = true;
+                btnStop.Enabled = false;
             }
-            catch
+            catch (Exception ex)
             {
-
+                AddLog("Lỗi Stop Server: " + ex.Message);
             }
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPrice_Click(object sender, EventArgs e)
         {
 
         }

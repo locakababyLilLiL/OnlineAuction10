@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Net.Sockets;
+using System;
+using System.Text;
 
 namespace AuctionClient.Forms
 {

@@ -19,12 +19,20 @@ namespace AuctionClient.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            dgvAuctions.Columns.Add("Id", "ID");
-            dgvAuctions.Columns.Add("Name", "Tên");
-            dgvAuctions.Columns.Add("Price", "Giá");
+            dgvAuctions.Columns.Clear();
 
-            dgvAuctions.Rows.Add("1", "iPhone 15", "20000000");
-            dgvAuctions.Rows.Add("2", "Laptop", "15000000");
+            dgvAuctions.Columns.Add("Id", "ID");
+            dgvAuctions.Columns.Add("Name", "Tên sản phẩm");
+            dgvAuctions.Columns.Add("Price", "Giá khởi điểm");
+            dgvAuctions.Columns.Add("ImageFile", "Ảnh");
+
+            dgvAuctions.Columns["ImageFile"].Visible = false;
+
+            dgvAuctions.Rows.Add("1", "IPhone 15", "2000", "iphone-15-xanh.jpg");
+            dgvAuctions.Rows.Add("2", "Đồng hồ Casio", "15000", "Casio.jpg");
+
+            dgvAuctions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAuctions.MultiSelect = false;
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
@@ -36,12 +44,15 @@ namespace AuctionClient.Forms
             }
 
             string auctionId = dgvAuctions.CurrentRow.Cells["Id"].Value.ToString();
+            string name = dgvAuctions.CurrentRow.Cells["Name"].Value.ToString();
+            int price = int.Parse(dgvAuctions.CurrentRow.Cells["Price"].Value.ToString());
+            string imageFile = dgvAuctions.CurrentRow.Cells["ImageFile"].Value.ToString();
 
-            AuctionForm frm = new AuctionForm(auctionId);
+            AuctionForm frm = new AuctionForm(auctionId, name, price, imageFile);
 
-            this.Hide();          // Ẩn MainForm
-            frm.ShowDialog();     // Chờ đến khi đóng AuctionForm
-            this.Show();          // Hiện lại MainForm
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

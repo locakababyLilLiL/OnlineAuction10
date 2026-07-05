@@ -37,6 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.picItem = new System.Windows.Forms.PictureBox();
+            this.lblCountdown = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picItem)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPrice
@@ -47,9 +50,10 @@
             this.lblPrice.ForeColor = System.Drawing.Color.Red;
             this.lblPrice.Location = new System.Drawing.Point(414, 119);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(502, 45);
+            this.lblPrice.Size = new System.Drawing.Size(378, 45);
             this.lblPrice.TabIndex = 0;
-            this.lblPrice.Text = "💰Giá hiện tại : 10 000 000 VNĐ";
+            this.lblPrice.Text = "💰Giá hiện tại : 10.000$\r\n";
+            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
             // 
             // txtBid
             // 
@@ -60,6 +64,7 @@
             this.txtBid.Name = "txtBid";
             this.txtBid.Size = new System.Drawing.Size(501, 53);
             this.txtBid.TabIndex = 3;
+            this.txtBid.TextChanged += new System.EventHandler(this.txtBid_TextChanged);
             // 
             // btnBid
             // 
@@ -119,7 +124,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(129, 0);
+            this.label1.Location = new System.Drawing.Point(118, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(624, 54);
             this.label1.TabIndex = 8;
@@ -150,12 +155,35 @@
             this.label3.Text = "🕘 Lịch sử đấu giá                                                               " +
     "      ";
             // 
+            // picItem
+            // 
+            this.picItem.Location = new System.Drawing.Point(0, 63);
+            this.picItem.Name = "picItem";
+            this.picItem.Size = new System.Drawing.Size(407, 278);
+            this.picItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picItem.TabIndex = 11;
+            this.picItem.TabStop = false;
+            this.picItem.Click += new System.EventHandler(this.picItem_Click);
+            // 
+            // lblCountdown
+            // 
+            this.lblCountdown.AutoSize = true;
+            this.lblCountdown.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountdown.ForeColor = System.Drawing.Color.Red;
+            this.lblCountdown.Location = new System.Drawing.Point(762, 18);
+            this.lblCountdown.Name = "lblCountdown";
+            this.lblCountdown.Size = new System.Drawing.Size(155, 45);
+            this.lblCountdown.TabIndex = 12;
+            this.lblCountdown.Text = "⏱ 05:00";
+            // 
             // AuctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(929, 642);
+            this.Controls.Add(this.picItem);
+            this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -169,6 +197,7 @@
             this.Name = "AuctionForm";
             this.Text = "     AucationForm   ";
             this.Load += new System.EventHandler(this.AuctionForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +214,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox picItem;
+        private System.Windows.Forms.Label lblCountdown;
     }
 }
