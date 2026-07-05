@@ -361,3 +361,20 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Visual Studio
+.vs/
+
+# Build
+bin/
+obj/
+
+# User files
+*.user
+*.suo
+
+# Auction History
+History.txt
+AuctionServer/bin/
+AuctionServer/obj/
+AuctionClient/bin/
+AuctionClient/obj/
