@@ -35,78 +35,129 @@
             this.lblItem = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(28, 156);
+            this.lblPrice.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.ForeColor = System.Drawing.Color.Red;
+            this.lblPrice.Location = new System.Drawing.Point(414, 119);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(219, 20);
+            this.lblPrice.Size = new System.Drawing.Size(502, 45);
             this.lblPrice.TabIndex = 0;
-            this.lblPrice.Text = "Giá hiện tại : 10 000 000 VNĐ";
+            this.lblPrice.Text = "💰Giá hiện tại : 10 000 000 VNĐ";
             // 
             // txtBid
             // 
-            this.txtBid.Location = new System.Drawing.Point(32, 222);
+            this.txtBid.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBid.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBid.Location = new System.Drawing.Point(413, 231);
+            this.txtBid.Multiline = true;
             this.txtBid.Name = "txtBid";
-            this.txtBid.Size = new System.Drawing.Size(346, 26);
+            this.txtBid.Size = new System.Drawing.Size(501, 53);
             this.txtBid.TabIndex = 3;
             // 
             // btnBid
             // 
-            this.btnBid.Location = new System.Drawing.Point(396, 222);
+            this.btnBid.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnBid.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBid.ForeColor = System.Drawing.Color.White;
+            this.btnBid.Location = new System.Drawing.Point(413, 292);
             this.btnBid.Name = "btnBid";
-            this.btnBid.Size = new System.Drawing.Size(100, 30);
+            this.btnBid.Size = new System.Drawing.Size(238, 51);
             this.btnBid.TabIndex = 4;
-            this.btnBid.Text = "Đặt giá";
-            this.btnBid.UseVisualStyleBackColor = true;
+            this.btnBid.Text = "🔨 Đặt giá";
+            this.btnBid.UseVisualStyleBackColor = false;
             this.btnBid.Click += new System.EventHandler(this.btnBid_Click);
             // 
             // lstHistory
             // 
+            this.lstHistory.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lstHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstHistory.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lstHistory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstHistory.ForeColor = System.Drawing.Color.FloralWhite;
             this.lstHistory.FormattingEnabled = true;
-            this.lstHistory.ItemHeight = 20;
-            this.lstHistory.Location = new System.Drawing.Point(12, 271);
+            this.lstHistory.ItemHeight = 32;
+            this.lstHistory.Location = new System.Drawing.Point(1, 394);
             this.lstHistory.Name = "lstHistory";
-            this.lstHistory.Size = new System.Drawing.Size(555, 184);
+            this.lstHistory.Size = new System.Drawing.Size(910, 256);
             this.lstHistory.TabIndex = 5;
             this.lstHistory.SelectedIndexChanged += new System.EventHandler(this.lstHistory_SelectedIndexChanged);
             // 
             // lblItem
             // 
             this.lblItem.AutoSize = true;
-            this.lblItem.Location = new System.Drawing.Point(28, 114);
+            this.lblItem.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblItem.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItem.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblItem.Location = new System.Drawing.Point(414, 63);
             this.lblItem.Name = "lblItem";
-            this.lblItem.Size = new System.Drawing.Size(146, 20);
+            this.lblItem.Size = new System.Drawing.Size(498, 45);
             this.lblItem.TabIndex = 6;
-            this.lblItem.Text = "Item: Laptop | ID: 1";
+            this.lblItem.Text = "📦 Item: Laptop | ID: 1               \r\n";
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(396, 114);
+            this.btnBack.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBack.Location = new System.Drawing.Point(686, 290);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 33);
+            this.btnBack.Size = new System.Drawing.Size(228, 51);
             this.btnBack.TabIndex = 7;
-            this.btnBack.Text = "Quay lại";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Text = " Quay lại";
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 40);
+            this.label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(129, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(279, 28);
+            this.label1.Size = new System.Drawing.Size(624, 54);
             this.label1.TabIndex = 8;
-            this.label1.Text = "THÔNG TIN PHIÊN ĐẤU GIÁ\r\n";
+            this.label1.Text = "🏷️ THÔNG TIN PHIÊN ĐẤU GIÁ\r\n";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label2.Location = new System.Drawing.Point(414, 174);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(500, 45);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "✍️ Nhập giá đấu                         ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label3.Location = new System.Drawing.Point(-7, 346);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(918, 45);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "🕘 Lịch sử đấu giá                                                               " +
+    "      ";
             // 
             // AuctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 467);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(929, 642);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblItem);
@@ -114,8 +165,9 @@
             this.Controls.Add(this.btnBid);
             this.Controls.Add(this.txtBid);
             this.Controls.Add(this.lblPrice);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "AuctionForm";
-            this.Text = "AuctionForm";
+            this.Text = "     AucationForm   ";
             this.Load += new System.EventHandler(this.AuctionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -131,5 +183,7 @@
         private System.Windows.Forms.Label lblItem;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

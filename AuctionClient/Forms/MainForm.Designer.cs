@@ -37,53 +37,66 @@
             // 
             // btnJoin
             // 
-            this.btnJoin.Location = new System.Drawing.Point(12, 46);
+            this.btnJoin.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJoin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJoin.ForeColor = System.Drawing.Color.Azure;
+            this.btnJoin.Location = new System.Drawing.Point(12, 62);
             this.btnJoin.Name = "btnJoin";
-            this.btnJoin.Size = new System.Drawing.Size(92, 30);
+            this.btnJoin.Size = new System.Drawing.Size(127, 41);
             this.btnJoin.TabIndex = 0;
-            this.btnJoin.Text = "Tham gia";
-            this.btnJoin.UseVisualStyleBackColor = true;
+            this.btnJoin.Text = "Tham Gia";
+            this.btnJoin.UseVisualStyleBackColor = false;
             this.btnJoin.Click += new System.EventHandler(this.btnJoin_Click);
             // 
             // dgvAuctions
             // 
+            this.dgvAuctions.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvAuctions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuctions.Location = new System.Drawing.Point(12, 93);
+            this.dgvAuctions.Location = new System.Drawing.Point(12, 109);
             this.dgvAuctions.Name = "dgvAuctions";
             this.dgvAuctions.RowHeadersWidth = 62;
             this.dgvAuctions.RowTemplate.Height = 28;
-            this.dgvAuctions.Size = new System.Drawing.Size(499, 345);
+            this.dgvAuctions.Size = new System.Drawing.Size(882, 439);
             this.dgvAuctions.TabIndex = 1;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblUser.Location = new System.Drawing.Point(12, 9);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(193, 25);
+            this.lblUser.Size = new System.Drawing.Size(298, 37);
             this.lblUser.TabIndex = 2;
             this.lblUser.Text = "Welcome: user123";
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(409, 46);
+            this.btnBack.BackColor = System.Drawing.Color.Coral;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBack.Location = new System.Drawing.Point(145, 62);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(102, 30);
+            this.btnBack.Size = new System.Drawing.Size(123, 41);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Quay lại";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 450);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(906, 578);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.dgvAuctions);
             this.Controls.Add(this.btnJoin);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
