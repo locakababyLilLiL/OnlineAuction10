@@ -95,36 +95,63 @@ namespace AuctionClient.Forms
             switch (parts[0])
             {
                 case "JOIN":
-                    if (parts.Length >= 2)
+                    if (parts.Length >= 6)
                     {
-                        if (int.TryParse(parts[1], out int price))
-                        {
-                            currentPrice = price;
-                            lblPrice.Text = "💰 Giá hiện tại: " + currentPrice.ToString("N0") + " $";
-                        }
-                    }
+                        string msgAuctionId = parts[1];
 
-                    if (parts.Length >= 3)
-                    {
-                        lblCountdown.Text = "⏱ " + parts[2];
+                        if (msgAuctionId != auctionId)
+                            return;
+
+                        int startPrice = int.Parse(parts[2]);
+                        int current = int.Parse(parts[3]);
+
+                        currentPrice = current;
+
+                        lblStartPrice.Text = "Giá khởi điểm: " + startPrice.ToString("N0") + " $";
+
+                        if (currentPrice == 0)
+                        {
+                            lblPrice.Text = "Giá hiện tại: Chưa có ai đặt";
+                        }
+                        else
+                        {
+                            lblPrice.Text = "Giá hiện tại: " + currentPrice.ToString("N0") + " $";
+                        }
+
+                        lblCountdown.Text = "⏱ " + parts[4];
+
+                        lstHistory.Items.Add("Đang đấu giá phòng " + auctionId);
+                        lstHistory.Items.Add("Người cao nhất hiện tại: " + parts[5]);
                     }
                     break;
 
                 case "TIME":
-                    if (parts.Length >= 2)
+                    if (parts.Length >= 3)
                     {
-                        lblCountdown.Text = "⏱ " + parts[1];
+                        string msgAuctionId = parts[1];
+
+                        if (msgAuctionId != auctionId)
+                            return;
+
+                        lblCountdown.Text = "⏱ " + parts[2];
                     }
                     break;
 
                 case "BID":
-                    if (parts.Length >= 3)
+                    if (parts.Length >= 4)
                     {
-                        if (int.TryParse(parts[2], out int newPrice))
+                        string msgAuctionId = parts[1];
+
+                        if (msgAuctionId != auctionId)
+                            return;
+
+                        string username = parts[2];
+
+                        if (int.TryParse(parts[3], out int newPrice))
                         {
                             currentPrice = newPrice;
                             lblPrice.Text = "💰 Giá hiện tại: " + currentPrice.ToString("N0") + " $";
-                            lstHistory.Items.Add(parts[1] + " : " + currentPrice.ToString("N0") + " $");
+                            lstHistory.Items.Add(username + " : " + currentPrice.ToString("N0") + " $");
                         }
                     }
                     break;
@@ -137,13 +164,25 @@ namespace AuctionClient.Forms
                     break;
 
                 case "END":
-                    btnBid.Enabled = false;
-                    lblCountdown.Text = "⏱ Đã kết thúc";
+                    if (parts.Length >= 4)
+                    {
+                        string msgAuctionId = parts[1];
 
-                    if (parts.Length >= 2)
-                        MessageBox.Show("Winner: " + parts[1]);
-                    else
-                        MessageBox.Show("Phiên đấu giá đã kết thúc!");
+                        if (msgAuctionId != auctionId)
+                            return;
+
+                        btnBid.Enabled = false;
+                        lblCountdown.Text = "⏱ Đã kết thúc";
+
+                        string winner = parts[2];
+                        string finalPrice = parts[3];
+
+                        MessageBox.Show(
+                            "Phiên đấu giá đã kết thúc!\n" +
+                            "Winner: " + winner + "\n" +
+                            "Giá thắng: " + finalPrice + " $"
+                        );
+                    }
                     break;
             }
         }
@@ -199,6 +238,11 @@ namespace AuctionClient.Forms
         }
 
         private void picItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStartPrice_Click(object sender, EventArgs e)
         {
 
         }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionItem.cs" />
+    <Compile Include="AuctionRoom.cs" />
     <Compile Include="Bid.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Form1.cs">

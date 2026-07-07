@@ -29,7 +29,7 @@ namespace AuctionClient.Forms
             dgvAuctions.Columns["ImageFile"].Visible = false;
 
             dgvAuctions.Rows.Add("1", "IPhone 15", "2000", "iphone-15-xanh.jpg");
-            dgvAuctions.Rows.Add("2", "Đồng hồ Casio", "15000", "Casio.jpg");
+            dgvAuctions.Rows.Add("2", "Đồng hồ Casio", "50000", "Casio.jpg");
 
             dgvAuctions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAuctions.MultiSelect = false;

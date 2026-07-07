@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.picItem = new System.Windows.Forms.PictureBox();
             this.lblCountdown = new System.Windows.Forms.Label();
+            this.lblStartPrice = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picItem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,18 +49,18 @@
             this.lblPrice.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.Red;
-            this.lblPrice.Location = new System.Drawing.Point(414, 119);
+            this.lblPrice.Location = new System.Drawing.Point(413, 152);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(378, 45);
+            this.lblPrice.Size = new System.Drawing.Size(261, 45);
             this.lblPrice.TabIndex = 0;
-            this.lblPrice.Text = "💰Giá hiện tại : 10.000$\r\n";
+            this.lblPrice.Text = "💰Giá hiện tại : \r\n";
             this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
             // 
             // txtBid
             // 
             this.txtBid.BackColor = System.Drawing.SystemColors.Window;
             this.txtBid.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBid.Location = new System.Drawing.Point(413, 231);
+            this.txtBid.Location = new System.Drawing.Point(413, 245);
             this.txtBid.Multiline = true;
             this.txtBid.Name = "txtBid";
             this.txtBid.Size = new System.Drawing.Size(501, 53);
@@ -133,14 +134,14 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.label2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(414, 174);
+            this.label2.Location = new System.Drawing.Point(414, 197);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(500, 45);
+            this.label2.Size = new System.Drawing.Size(275, 45);
             this.label2.TabIndex = 9;
-            this.label2.Text = "✍️ Nhập giá đấu                         ";
+            this.label2.Text = "✍️ Nhập giá đấu";
             // 
             // label3
             // 
@@ -170,11 +171,24 @@
             this.lblCountdown.AutoSize = true;
             this.lblCountdown.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountdown.ForeColor = System.Drawing.Color.Red;
-            this.lblCountdown.Location = new System.Drawing.Point(762, 18);
+            this.lblCountdown.Location = new System.Drawing.Point(762, 197);
             this.lblCountdown.Name = "lblCountdown";
             this.lblCountdown.Size = new System.Drawing.Size(155, 45);
             this.lblCountdown.TabIndex = 12;
             this.lblCountdown.Text = "⏱ 05:00";
+            // 
+            // lblStartPrice
+            // 
+            this.lblStartPrice.AutoSize = true;
+            this.lblStartPrice.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblStartPrice.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartPrice.ForeColor = System.Drawing.Color.Red;
+            this.lblStartPrice.Location = new System.Drawing.Point(414, 108);
+            this.lblStartPrice.Name = "lblStartPrice";
+            this.lblStartPrice.Size = new System.Drawing.Size(291, 45);
+            this.lblStartPrice.TabIndex = 13;
+            this.lblStartPrice.Text = "📌Giá khởi điểm :";
+            this.lblStartPrice.Click += new System.EventHandler(this.lblStartPrice_Click);
             // 
             // AuctionForm
             // 
@@ -182,6 +196,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(929, 642);
+            this.Controls.Add(this.lblStartPrice);
             this.Controls.Add(this.picItem);
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.label3);
@@ -216,5 +231,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picItem;
         private System.Windows.Forms.Label lblCountdown;
+        private System.Windows.Forms.Label lblStartPrice;
     }
 }

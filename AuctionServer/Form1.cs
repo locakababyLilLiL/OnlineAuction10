@@ -23,29 +23,76 @@ namespace AuctionServer
 
         List<TcpClient> clients = new List<TcpClient>();
         List<User> users = new List<User>();
-        List<Bid> bidHistory = new List<Bid>();
 
-        AuctionItem item = new AuctionItem();
+        Dictionary<string, AuctionRoom> rooms = new Dictionary<string, AuctionRoom>();
 
-        bool auctionEnded = false;
         bool isRunning = false;
+
         readonly object clientsLock = new object();
+        readonly object roomsLock = new object();
         public Form1()
         {
             InitializeComponent();
-            item.ItemName = "IPhone 17 Pro Max";
-            item.CurrentPrice = 10000000;
-            item.HighestBidder = "Chưa có";
-            item.EndTime = DateTime.Now.AddMinutes(5);
+            InitRooms();
         }
+        private void InitRooms()
+        {
+            rooms.Clear();
 
+            rooms["1"] = new AuctionRoom
+            {
+                AuctionId = "1",
+                ItemName = "IPhone 15 Pro Max",
+                StartPrice = 2000,
+                CurrentPrice = 0,
+                HighestBidder = "Chưa có",
+                EndTime = DateTime.Now.AddMinutes(5),
+                AuctionEnded = false
+            };
+
+            rooms["2"] = new AuctionRoom
+            {
+                AuctionId = "2",
+                ItemName = "Đồng hồ Casio",
+                StartPrice = 50000,
+                CurrentPrice = 0,
+                HighestBidder = "Chưa có",
+                EndTime = DateTime.Now.AddMinutes(5),
+                AuctionEnded = false
+            };
+        }
+        private void UpdateRoomInfo(string auctionId)
+        {
+            if (!rooms.ContainsKey(auctionId))
+                return;
+
+            AuctionRoom room = rooms[auctionId];
+
+            lblProduct.Text = room.ItemName;
+
+            // Giá khởi điểm luôn cố định
+            lblPrice.Text = room.StartPrice.ToString("N0") + " $";
+
+            // Giá hiện tại mới được cập nhật
+            if (room.CurrentPrice == 0)
+            {
+                lblStartPrice.Text = "Chưa có ai đặt";
+            }
+            else
+            {
+                lblStartPrice.Text = room.CurrentPrice.ToString("N0") + " $";
+            }
+
+            lblWinner.Text = room.HighestBidder;
+            lblTime.Text = GetTimeText(room);
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Interval = 1000;
             btnStop.Enabled = false;
 
-            lblPrice.Text = item.CurrentPrice.ToString("N0") + " VNĐ";
-            lblWinner.Text = item.HighestBidder;
+            lblPrice.Text = "Phòng 1: " + rooms["1"].CurrentPrice.ToString("N0") + " $";
+            lblWinner.Text = rooms["1"].HighestBidder;
             lblTime.Text = "05:00";
 
             AddLog("Server chưa chạy. Bấm Start để bắt đầu.");
@@ -75,14 +122,10 @@ namespace AuctionServer
                 server.Start();
 
                 isRunning = true;
-                auctionEnded = false;
+                InitRooms();
 
-                item.EndTime = DateTime.Now.AddMinutes(5);
-                item.CurrentPrice = 10000;
-                item.HighestBidder = "Chưa có";
-
-                lblPrice.Text = "💰 Giá hiện tại : " + item.CurrentPrice.ToString("N0") + " $";
-                lblWinner.Text = item.HighestBidder;
+                lblPrice.Text = "Phòng 1: " + rooms["1"].CurrentPrice.ToString("N0") + " $";
+                lblWinner.Text = rooms["1"].HighestBidder;
                 lblTime.Text = "05:00";
 
                 AddLog("Server đã khởi động trên port 9999.");
@@ -107,6 +150,15 @@ namespace AuctionServer
                 AddLog("Lỗi Start Server: " + ex.Message);
                 MessageBox.Show("Lỗi Start Server: " + ex.Message);
             }
+        }
+        private string GetTimeText(AuctionRoom room)
+        {
+            TimeSpan t = room.EndTime - DateTime.Now;
+
+            if (t.TotalSeconds <= 0)
+                return "Đã kết thúc";
+
+            return t.Minutes.ToString("00") + ":" + t.Seconds.ToString("00");
         }
         private void ListenClient()
         {
@@ -243,18 +295,43 @@ namespace AuctionServer
                 //---------------------------------------
                 if (command == "JOIN")
                 {
-                    string timeText = lblTime.Text;
-
-                    if (data.Length >= 3)
+                    if (data.Length < 3)
                     {
-                        AddLog(data[2] + " tham gia phiên đấu giá ID: " + data[1]);
-                    }
-                    else
-                    {
-                        AddLog("Có client tham gia phiên đấu giá.");
+                        Send(stream, "ERROR|Thiếu mã phòng hoặc username");
+                        continue;
                     }
 
-                    Send(stream, $"JOIN|{item.CurrentPrice}|{timeText}");
+                    string auctionId = data[1];
+                    string username = data[2];
+
+                    if (!rooms.ContainsKey(auctionId))
+                    {
+                        Send(stream, "ERROR|Phòng đấu giá không tồn tại");
+                        continue;
+                    }
+
+                    AuctionRoom room = rooms[auctionId];
+
+                    lock (room.RoomLock)
+                    {
+                        if (!room.Clients.Contains(client))
+                        {
+                            room.Clients.Add(client);
+                        }
+                    }
+
+                    string timeText = GetTimeText(room);
+                    Send(stream,
+                        "JOIN|" +
+                        auctionId + "|" +
+                        room.StartPrice + "|" +
+                        room.CurrentPrice + "|" +
+                        GetTimeText(room) + "|" +
+                        room.HighestBidder
+                    );
+
+                    AddLog(username + " tham gia phòng đấu giá ID: " + auctionId);
+
                     continue;
                 }
 
@@ -263,59 +340,74 @@ namespace AuctionServer
                 //---------------------------------------
                 if (command == "BID")
                 {
-                    if (auctionEnded)
-                    {
-                        Send(stream, "END|" + item.HighestBidder);
-                        continue;
-                    }
-
                     if (data.Length < 4)
                     {
-                        Send(stream, "ERROR|Sai dữ liệu");
+                        Send(stream, "ERROR|Sai dữ liệu đặt giá");
                         continue;
                     }
 
                     string auctionId = data[1];
-
                     string username = data[2];
 
-                    int newPrice;
-
-                    if (!int.TryParse(data[3], out newPrice))
+                    if (!int.TryParse(data[3], out int newPrice))
                     {
                         Send(stream, "ERROR|Giá không hợp lệ");
                         continue;
                     }
 
-                    if (newPrice <= item.CurrentPrice)
+                    if (!rooms.ContainsKey(auctionId))
                     {
-                        Send(stream, "ERROR|Giá phải lớn hơn giá hiện tại");
+                        Send(stream, "ERROR|Phòng đấu giá không tồn tại");
                         continue;
                     }
 
-                    item.CurrentPrice = newPrice;
-                    item.HighestBidder = username;
+                    AuctionRoom room = rooms[auctionId];
 
-                    Bid bid = new Bid();
+                    lock (room.RoomLock)
+                    {
+                        if (room.AuctionEnded)
+                        {
+                            Send(stream, "ERROR|Phiên đấu giá đã kết thúc");
+                            continue;
+                        }
 
-                    bid.Username = username;
-                    bid.Price = newPrice;
-                    bid.Time = DateTime.Now;
+                        if (room.CurrentPrice == 0)
+                        {
+                            if (newPrice < room.StartPrice)
+                            {
+                                Send(stream, "ERROR|Giá đặt phải lớn hơn hoặc bằng giá khởi điểm: " + room.StartPrice.ToString("N0") + " $");
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (newPrice <= room.CurrentPrice)
+                            {
+                                Send(stream, "ERROR|Giá đặt phải lớn hơn giá hiện tại: " + room.CurrentPrice.ToString("N0") + " $");
+                                continue;
+                            }
+                        }
+
+                        room.CurrentPrice = newPrice;
+                        room.HighestBidder = username;
+
+                        room.BidHistory.Add(new Bid
+                        {
+                            Username = username,
+                            Price = newPrice,
+                            Time = DateTime.Now
+                        });
+                    }
 
                     Invoke(new Action(() =>
                     {
-                        lblPrice.Text = item.CurrentPrice.ToString("N0") + " $";
-                        lblWinner.Text = item.HighestBidder;
+                        UpdateRoomInfo(auctionId);
                     }));
 
-                    AddLog(username + " đặt giá " + item.CurrentPrice.ToString("N0") + " $");
+                    AddLog("Phòng " + auctionId + ": " + username + " đặt giá "
+                        + newPrice.ToString("N0") + " $");
 
-                    bidHistory.Add(bid);
-
-                    AddLog("Client gửi: " + message);
-
-                    Broadcast(
-                             $"BID|{username}|{item.CurrentPrice}");
+                    BroadcastToRoom(room, "BID|" + auctionId + "|" + username + "|" + newPrice);
 
                     continue;
                 }
@@ -351,45 +443,86 @@ namespace AuctionServer
                 }
             }
         }
+        private void BroadcastToRoom(AuctionRoom room, string message)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(message);
+
+            lock (room.RoomLock)
+            {
+                foreach (TcpClient c in room.Clients.ToList())
+                {
+                    try
+                    {
+                        NetworkStream s = c.GetStream();
+                        s.Write(data, 0, data.Length);
+                    }
+                    catch
+                    {
+                        room.Clients.Remove(c);
+                    }
+                }
+            }
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            TimeSpan t = item.EndTime - DateTime.Now;
-
-            if (t.TotalSeconds > 0)
+            foreach (AuctionRoom room in rooms.Values.ToList())
             {
-                string timeText = t.Minutes.ToString("00") + ":" + t.Seconds.ToString("00");
-                lblTime.Text = timeText;
-
-                Broadcast("TIME|" + timeText);
-            }
-            else
-            {
-                lblTime.Text = "Đã kết thúc";
-                timer1.Stop();
-
-                if (auctionEnded)
-                    return;
-
-                auctionEnded = true;
-
-                AddLog("===== PHIÊN ĐẤU GIÁ KẾT THÚC =====");
-                AddLog("Người thắng: " + item.HighestBidder);
-                AddLog("Giá thắng: " + item.CurrentPrice.ToString("N0") + " $");
-
-                Broadcast("END|" + item.HighestBidder);
-
-                foreach (Bid b in bidHistory)
+                lock (room.RoomLock)
                 {
-                    File.AppendAllText(
-                        "History.txt",
-                        b.Username + " | " +
-                        b.Price + " | " +
-                        b.Time +
-                        Environment.NewLine);
-                }
+                    if (room.AuctionEnded)
+                        continue;
 
-                AddLog("Đã lưu lịch sử đấu giá.");
+                    TimeSpan t = room.EndTime - DateTime.Now;
+
+                    if (t.TotalSeconds > 0)
+                    {
+                        string timeText = t.Minutes.ToString("00") + ":" + t.Seconds.ToString("00");
+
+                        if (room.AuctionId == "1")
+                        {
+                            lblTime.Text = timeText;
+                        }
+
+                        BroadcastToRoom(room, "TIME|" + room.AuctionId + "|" + timeText);
+                    }
+                    else
+                    {
+                        room.AuctionEnded = true;
+
+                        if (room.AuctionId == "1")
+                        {
+                            lblTime.Text = "Đã kết thúc";
+                        }
+
+                        AddLog("===== PHÒNG " + room.AuctionId + " KẾT THÚC =====");
+                        AddLog("Sản phẩm: " + room.ItemName);
+                        AddLog("Người thắng: " + room.HighestBidder);
+                        AddLog("Giá thắng: " + room.CurrentPrice.ToString("N0") + " $");
+
+                        BroadcastToRoom(room, "END|" + room.AuctionId + "|" + room.HighestBidder + "|" + room.CurrentPrice);
+
+                        foreach (Bid b in room.BidHistory)
+                        {
+                            File.AppendAllText(
+                                "History_Room_" + room.AuctionId + ".txt",
+                                b.Username + " | " +
+                                b.Price + " | " +
+                                b.Time +
+                                Environment.NewLine);
+                        }
+
+                        AddLog("Đã lưu lịch sử phòng " + room.AuctionId);
+                    }
+                }
+            }
+
+            bool allEnded = rooms.Values.All(r => r.AuctionEnded);
+
+            if (allEnded)
+            {
+                timer1.Stop();
+                AddLog("Tất cả phòng đấu giá đã kết thúc.");
             }
         }
 
@@ -454,6 +587,21 @@ namespace AuctionServer
         }
 
         private void lblPrice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }
