@@ -44,7 +44,7 @@ namespace AuctionServer
 
             rooms["1"] = new AuctionRoom
             {
-                AuctionId = "2",
+                AuctionId = "1",
                 ItemName = "Đồng hồ Casio",
                 StartPrice = 10000,
                 CurrentPrice = 0,

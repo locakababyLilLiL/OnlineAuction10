@@ -81,7 +81,7 @@
             this.lblTitle.Location = new System.Drawing.Point(2, 18);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(502, 48);
+            this.lblTitle.Size = new System.Drawing.Size(605, 58);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "🔴  LIVE AUCTION SERVER";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -118,7 +118,7 @@
             this.label2.ForeColor = System.Drawing.Color.Gold;
             this.label2.Location = new System.Drawing.Point(-2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 53);
+            this.label2.Size = new System.Drawing.Size(93, 63);
             this.label2.TabIndex = 10;
             this.label2.Text = "🏷️";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
@@ -130,11 +130,21 @@
             this.lblPrice.ForeColor = System.Drawing.Color.Yellow;
             this.lblPrice.Location = new System.Drawing.Point(98, 28);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(43, 33);
+            this.lblPrice.Size = new System.Drawing.Size(49, 39);
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "0$";
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
+            // 
+            // lblStartTitle
+            // 
+            this.lblStartTitle.AutoSize = true;
+            this.lblStartTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblStartTitle.Location = new System.Drawing.Point(97, 0);
+            this.lblStartTitle.Name = "lblStartTitle";
+            this.lblStartTitle.Size = new System.Drawing.Size(154, 29);
+            this.lblStartTitle.TabIndex = 9;
+            this.lblStartTitle.Text = "Giá khởi điểm";
             // 
             // panel1
             // 
@@ -147,13 +157,25 @@
             this.panel1.Size = new System.Drawing.Size(378, 65);
             this.panel1.TabIndex = 11;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.ForeColor = System.Drawing.Color.Gold;
+            this.label1.Location = new System.Drawing.Point(0, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 63);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "📦";
+            // 
             // lblProductTitle
             // 
             this.lblProductTitle.AutoSize = true;
             this.lblProductTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblProductTitle.Location = new System.Drawing.Point(99, 0);
             this.lblProductTitle.Name = "lblProductTitle";
-            this.lblProductTitle.Size = new System.Drawing.Size(93, 24);
+            this.lblProductTitle.Size = new System.Drawing.Size(112, 29);
             this.lblProductTitle.TabIndex = 7;
             this.lblProductTitle.Text = "Sản phẩm";
             // 
@@ -164,10 +186,33 @@
             this.lblProduct.ForeColor = System.Drawing.Color.Yellow;
             this.lblProduct.Location = new System.Drawing.Point(95, 24);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(227, 33);
+            this.lblProduct.Size = new System.Drawing.Size(216, 39);
             this.lblProduct.TabIndex = 8;
-            this.lblProduct.Text = "iPhone 15 Pro Max";
+            this.lblProduct.Text = "Đồng hồ CASIO\r\n";
             this.lblProduct.Click += new System.EventHandler(this.lblProduct_Click);
+            // 
+            // lblSummaryTitle
+            // 
+            this.lblSummaryTitle.AutoSize = true;
+            this.lblSummaryTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblSummaryTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblSummaryTitle.Location = new System.Drawing.Point(3, 4);
+            this.lblSummaryTitle.Name = "lblSummaryTitle";
+            this.lblSummaryTitle.Size = new System.Drawing.Size(294, 32);
+            this.lblSummaryTitle.TabIndex = 0;
+            this.lblSummaryTitle.Text = "📊 AUCTION SUMMARY";
+            // 
+            // lblCurrentTitle
+            // 
+            this.lblCurrentTitle.AutoSize = true;
+            this.lblCurrentTitle.BackColor = System.Drawing.Color.Firebrick;
+            this.lblCurrentTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblCurrentTitle.Location = new System.Drawing.Point(97, 0);
+            this.lblCurrentTitle.Name = "lblCurrentTitle";
+            this.lblCurrentTitle.Size = new System.Drawing.Size(126, 29);
+            this.lblCurrentTitle.TabIndex = 1;
+            this.lblCurrentTitle.Text = "Giá hiện tại";
+            this.lblCurrentTitle.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblTime
             // 
@@ -176,7 +221,7 @@
             this.lblTime.ForeColor = System.Drawing.Color.Yellow;
             this.lblTime.Location = new System.Drawing.Point(95, 24);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(78, 33);
+            this.lblTime.Size = new System.Drawing.Size(90, 39);
             this.lblTime.TabIndex = 6;
             this.lblTime.Text = "05:00";
             // 
@@ -186,7 +231,7 @@
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.Location = new System.Drawing.Point(97, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 24);
+            this.label4.Size = new System.Drawing.Size(170, 29);
             this.label4.TabIndex = 5;
             this.label4.Text = "Time remaining";
             // 
@@ -197,7 +242,7 @@
             this.lblWinner.ForeColor = System.Drawing.Color.Yellow;
             this.lblWinner.Location = new System.Drawing.Point(98, 25);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(105, 33);
+            this.lblWinner.Size = new System.Drawing.Size(125, 39);
             this.lblWinner.TabIndex = 4;
             this.lblWinner.Text = "Chưa có";
             // 
@@ -207,7 +252,7 @@
             this.lblWinnerTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblWinnerTitle.Location = new System.Drawing.Point(99, 0);
             this.lblWinnerTitle.Name = "lblWinnerTitle";
-            this.lblWinnerTitle.Size = new System.Drawing.Size(77, 24);
+            this.lblWinnerTitle.Size = new System.Drawing.Size(93, 29);
             this.lblWinnerTitle.TabIndex = 3;
             this.lblWinnerTitle.Text = "Winner ";
             this.lblWinnerTitle.Click += new System.EventHandler(this.label3_Click);
@@ -229,10 +274,10 @@
             this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbLog.ForeColor = System.Drawing.Color.Lime;
-            this.rtbLog.Location = new System.Drawing.Point(0, 40);
+            this.rtbLog.Location = new System.Drawing.Point(0, 48);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;
-            this.rtbLog.Size = new System.Drawing.Size(609, 368);
+            this.rtbLog.Size = new System.Drawing.Size(609, 360);
             this.rtbLog.TabIndex = 1;
             this.rtbLog.Text = "";
             this.rtbLog.TextChanged += new System.EventHandler(this.rtbLog_TextChanged);
@@ -244,7 +289,7 @@
             this.label5.ForeColor = System.Drawing.Color.Gold;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(193, 40);
+            this.label5.Size = new System.Drawing.Size(232, 48);
             this.label5.TabIndex = 0;
             this.label5.Text = "📜 Live Log";
             // 
@@ -281,7 +326,7 @@
             this.lblStartPrice.ForeColor = System.Drawing.Color.Yellow;
             this.lblStartPrice.Location = new System.Drawing.Point(98, 22);
             this.lblStartPrice.Name = "lblStartPrice";
-            this.lblStartPrice.Size = new System.Drawing.Size(105, 33);
+            this.lblStartPrice.Size = new System.Drawing.Size(125, 39);
             this.lblStartPrice.TabIndex = 10;
             this.lblStartPrice.Text = "Chưa có";
             // 
@@ -297,6 +342,17 @@
             this.panel2.Size = new System.Drawing.Size(378, 67);
             this.panel2.TabIndex = 14;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(-2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 63);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "⏱";
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Firebrick;
@@ -308,6 +364,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(378, 67);
             this.panel3.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.ForeColor = System.Drawing.Color.Gold;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 64);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "👑";
             // 
             // panel4
             // 
@@ -328,13 +395,13 @@
             this.label3.ForeColor = System.Drawing.Color.Gold;
             this.label3.Location = new System.Drawing.Point(-2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 53);
+            this.label3.Size = new System.Drawing.Size(93, 63);
             this.label3.TabIndex = 15;
             this.label3.Text = "💰";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 40F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(1017, 519);
