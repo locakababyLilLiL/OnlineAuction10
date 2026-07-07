@@ -540,6 +540,25 @@ namespace AuctionServer
         {
             try
             {
+                foreach (AuctionRoom room in rooms.Values)
+                {
+                    lock (room.RoomLock)
+                    {
+                        if (room.AuctionEnded)
+                            continue;
+
+                        room.AuctionEnded = true;
+
+                        BroadcastToRoom(
+                            room,
+                            $"END|{room.AuctionId}|{room.HighestBidder}|{room.CurrentPrice}"
+                        );
+
+                        AddLog("===== PHÒNG " + room.AuctionId + " KẾT THÚC =====");
+                        AddLog("Người thắng: " + room.HighestBidder);
+                        AddLog("Giá thắng: " + room.CurrentPrice.ToString("N0") + " $");
+                    }
+                }
                 isRunning = false;
                 timer1.Stop();
 
