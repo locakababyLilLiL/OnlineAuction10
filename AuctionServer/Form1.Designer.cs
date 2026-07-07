@@ -58,6 +58,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnPauseTime = new System.Windows.Forms.Button();
+            this.btnResumeTime = new System.Windows.Forms.Button();
             this.pnlSummary.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -245,6 +247,7 @@
             this.lblWinner.Size = new System.Drawing.Size(125, 39);
             this.lblWinner.TabIndex = 4;
             this.lblWinner.Text = "Chưa có";
+            this.lblWinner.Click += new System.EventHandler(this.lblWinner_Click);
             // 
             // lblWinnerTitle
             // 
@@ -333,6 +336,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Firebrick;
+            this.panel2.Controls.Add(this.btnResumeTime);
+            this.panel2.Controls.Add(this.btnPauseTime);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblTime);
@@ -399,12 +404,39 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "💰";
             // 
+            // btnPauseTime
+            // 
+            this.btnPauseTime.BackColor = System.Drawing.Color.Red;
+            this.btnPauseTime.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPauseTime.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnPauseTime.ForeColor = System.Drawing.Color.White;
+            this.btnPauseTime.Location = new System.Drawing.Point(337, 37);
+            this.btnPauseTime.Name = "btnPauseTime";
+            this.btnPauseTime.Size = new System.Drawing.Size(41, 30);
+            this.btnPauseTime.TabIndex = 15;
+            this.btnPauseTime.Text = "⏸";
+            this.btnPauseTime.UseVisualStyleBackColor = false;
+            this.btnPauseTime.Click += new System.EventHandler(this.btnPauseTime_Click);
+            // 
+            // btnResumeTime
+            // 
+            this.btnResumeTime.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnResumeTime.Font = new System.Drawing.Font("Bahnschrift", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnResumeTime.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnResumeTime.Location = new System.Drawing.Point(335, -2);
+            this.btnResumeTime.Name = "btnResumeTime";
+            this.btnResumeTime.Size = new System.Drawing.Size(43, 31);
+            this.btnResumeTime.TabIndex = 16;
+            this.btnResumeTime.Text = "▶";
+            this.btnResumeTime.UseVisualStyleBackColor = false;
+            this.btnResumeTime.Click += new System.EventHandler(this.btnResumeTime_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(1017, 519);
+            this.ClientSize = new System.Drawing.Size(1038, 556);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
@@ -469,6 +501,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnResumeTime;
+        private System.Windows.Forms.Button btnPauseTime;
     }
 }
 

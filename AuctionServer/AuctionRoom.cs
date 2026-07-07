@@ -6,6 +6,8 @@ namespace AuctionServer
 {
     public class AuctionRoom
     {
+        public bool CountdownPaused { get; set; }      
+        public TimeSpan RemainingWhenPaused { get; set; }  
         public string AuctionId { get; set; }     // ID của phiên đấu giá
         public string ItemName { get; set; }      // Tên sản phẩm đấu giá
         public int StartPrice { get; set; }       // Giá khởi điểm

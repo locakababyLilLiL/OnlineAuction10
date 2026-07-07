@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,7 +23,6 @@ namespace AuctionClient.Forms
         public AuctionForm(string id, string name, int price, string image)
         {
             InitializeComponent();
-
             auctionId = id;
             auctionName = name;
             currentPrice = price;
@@ -120,8 +118,8 @@ namespace AuctionClient.Forms
 
                         lblCountdown.Text = "⏱ " + parts[4];
 
+                        lstHistory.Items.Clear();
                         lstHistory.Items.Add("Đang đấu giá phòng " + auctionId);
-                        lstHistory.Items.Add("Người cao nhất hiện tại: " + parts[5]);
                     }
                     break;
 
@@ -243,6 +241,16 @@ namespace AuctionClient.Forms
         }
 
         private void lblStartPrice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

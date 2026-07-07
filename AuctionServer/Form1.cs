@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Collections.Generic;
 using System.IO;
 
 namespace AuctionServer
@@ -32,6 +30,9 @@ namespace AuctionServer
 
         readonly object clientsLock = new object();
         readonly object roomsLock = new object();
+
+        const int AntiSnipingLimitSeconds = 20;
+        const int AntiSnipingAddSeconds = 20;
         public Form1()
         {
             InitializeComponent();
@@ -50,7 +51,11 @@ namespace AuctionServer
                 CurrentPrice = 0,
                 HighestBidder = "Chưa có",
                 EndTime = DateTime.Now.AddMinutes(5),
-                AuctionEnded = false
+                AuctionEnded = false,
+
+                // Khi server vừa Start thì thời gian CHƯA chạy
+                CountdownPaused = true,
+                RemainingWhenPaused = TimeSpan.FromMinutes(5)
             };
         }
         private void UpdateRoomInfo(string auctionId)
@@ -80,6 +85,9 @@ namespace AuctionServer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnPauseTime.Enabled = false;
+            btnResumeTime.Enabled = false;
+
             timer1.Interval = 1000;
             btnStop.Enabled = false;
 
@@ -126,7 +134,6 @@ namespace AuctionServer
                 }
             }
 
-            AddLog("Đã tải " + users.Count + " tài khoản từ file.");
         }
         private void SaveUsers()
         {
@@ -166,10 +173,11 @@ namespace AuctionServer
                 serverThread.IsBackground = true;
                 serverThread.Start();
 
-                timer1.Start();
-
                 btnStart.Enabled = false;
                 btnStop.Enabled = true;
+                btnPauseTime.Enabled = false;
+                btnResumeTime.Enabled = true;
+
             }
             catch (SocketException ex)
             {
@@ -404,6 +412,12 @@ namespace AuctionServer
                             continue;
                         }
 
+                        if (room.CountdownPaused)
+                        {
+                            Send(stream, "ERROR|Phiên đấu giá đang tạm ngưng. Vui lòng chờ!");
+                            continue;
+                        }
+
                         if (room.CurrentPrice == 0)
                         {
                             if (newPrice < room.StartPrice)
@@ -421,6 +435,8 @@ namespace AuctionServer
                             }
                         }
 
+                        TimeSpan remaining = room.EndTime - DateTime.Now;
+
                         room.CurrentPrice = newPrice;
                         room.HighestBidder = username;
 
@@ -430,6 +446,12 @@ namespace AuctionServer
                             Price = newPrice,
                             Time = DateTime.Now
                         });
+
+                        // Nếu còn <= 20 giây thì cộng thêm 20 giây
+                        if (remaining.TotalSeconds > 0 && remaining.TotalSeconds <= AntiSnipingLimitSeconds)
+                        {
+                            room.EndTime = room.EndTime.AddSeconds(AntiSnipingAddSeconds);
+                        }
                     }
 
                     Invoke(new Action(() =>
@@ -441,6 +463,7 @@ namespace AuctionServer
                         + newPrice.ToString("N0") + " $");
 
                     BroadcastToRoom(room, "BID|" + auctionId + "|" + username + "|" + newPrice);
+                    BroadcastToRoom(room, "TIME|" + auctionId + "|" + GetTimeText(room));
 
                     continue;
                 }
@@ -559,17 +582,7 @@ namespace AuctionServer
             }
         }
 
-        private void rtbLog_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelLog_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
+        private void btnStop_Click(object sender, EventArgs e)    
         {
             try
             {
@@ -595,7 +608,7 @@ namespace AuctionServer
                 isRunning = false;
                 timer1.Stop();
 
-                lock (clientsLock)
+                lock (clientsLock)    
                 {
                     foreach (TcpClient c in clients.ToList())
                     {
@@ -628,6 +641,25 @@ namespace AuctionServer
             }
         }
 
+        private string FormatTime(TimeSpan t)     // Hàm định dạng TimeSpan thành chuỗi "mm:ss"
+        {
+            if (t.TotalSeconds < 0)
+                t = TimeSpan.Zero;
+
+            int totalMinutes = (int)t.TotalMinutes;
+            return totalMinutes.ToString("00") + ":" + t.Seconds.ToString("00");
+        }
+
+        private void rtbLog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelLog_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -654,6 +686,90 @@ namespace AuctionServer
         }
 
         private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+            private void btnResumeTime_Click(object sender, EventArgs e)
+        {
+            if (!isRunning)
+            {
+                AddLog("Server chưa chạy nên không thể bật lại thời gian.");
+                return;
+            }
+
+            foreach (AuctionRoom room in rooms.Values.ToList())
+            {
+                lock (room.RoomLock)
+                {
+                    if (room.AuctionEnded || !room.CountdownPaused)
+                        continue;
+
+                    room.EndTime = DateTime.Now.Add(room.RemainingWhenPaused);
+                    room.CountdownPaused = false;
+                    timer1.Start();
+
+                    string timeText = FormatTime(room.RemainingWhenPaused);
+
+                    if (room.AuctionId == "1")
+                    {
+                        lblTime.Text = timeText;
+                    }
+
+                    BroadcastToRoom(room, "TIME|" + room.AuctionId + "|" + timeText);
+                }
+            }
+
+            timer1.Start();
+
+            btnPauseTime.Enabled = true;
+            btnResumeTime.Enabled = false;
+
+            AddLog("Đã bật lại đếm ngược thời gian.");
+        }
+    
+            private void btnPauseTime_Click(object sender, EventArgs e)
+        {
+            if (!isRunning)
+            {
+                AddLog("Server chưa chạy nên không thể tạm ngưng thời gian.");
+                return;
+            }
+
+            foreach (AuctionRoom room in rooms.Values.ToList())
+            {
+                lock (room.RoomLock)
+                {
+                    if (room.AuctionEnded || room.CountdownPaused)
+                        continue;
+
+                    TimeSpan remaining = room.EndTime - DateTime.Now;
+
+                    if (remaining.TotalSeconds <= 0)
+                        continue;
+
+                    room.RemainingWhenPaused = remaining;
+                    room.CountdownPaused = true;
+
+                    string timeText = FormatTime(remaining) + " (Tạm ngưng)";
+
+                    if (room.AuctionId == "1")
+                    {
+                        lblTime.Text = timeText;
+                    }
+
+                    BroadcastToRoom(room, "TIME|" + room.AuctionId + "|" + timeText);
+                }
+            }
+
+            timer1.Stop();
+
+            btnPauseTime.Enabled = false;
+            btnResumeTime.Enabled = true;
+
+            AddLog("Đã tạm ngưng đếm ngược thời gian.");
+        }
+
+        private void lblWinner_Click(object sender, EventArgs e)
         {
 
         }
