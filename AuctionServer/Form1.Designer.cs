@@ -32,18 +32,20 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlSummary = new System.Windows.Forms.Panel();
-            this.lblCurrentTitle = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.lblStartTitle = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
+            this.lblStartTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblProductTitle = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.lblSummaryTitle = new System.Windows.Forms.Label();
+            this.lblCurrentTitle = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblWinner = new System.Windows.Forms.Label();
             this.lblWinnerTitle = new System.Windows.Forms.Label();
-            this.lblSummaryTitle = new System.Windows.Forms.Label();
             this.panelLog = new System.Windows.Forms.Panel();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,13 +53,11 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.lblStartPrice = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlSummary.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -98,18 +98,6 @@
             this.pnlSummary.Size = new System.Drawing.Size(391, 408);
             this.pnlSummary.TabIndex = 1;
             // 
-            // lblCurrentTitle
-            // 
-            this.lblCurrentTitle.AutoSize = true;
-            this.lblCurrentTitle.BackColor = System.Drawing.Color.Firebrick;
-            this.lblCurrentTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblCurrentTitle.Location = new System.Drawing.Point(97, 0);
-            this.lblCurrentTitle.Name = "lblCurrentTitle";
-            this.lblCurrentTitle.Size = new System.Drawing.Size(126, 29);
-            this.lblCurrentTitle.TabIndex = 1;
-            this.lblCurrentTitle.Text = "Giá hiện tại";
-            this.lblCurrentTitle.Click += new System.EventHandler(this.label2_Click);
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Firebrick;
@@ -122,15 +110,18 @@
             this.panel5.Size = new System.Drawing.Size(378, 67);
             this.panel5.TabIndex = 13;
             // 
-            // lblStartTitle
+            // label2
             // 
-            this.lblStartTitle.AutoSize = true;
-            this.lblStartTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblStartTitle.Location = new System.Drawing.Point(97, 0);
-            this.lblStartTitle.Name = "lblStartTitle";
-            this.lblStartTitle.Size = new System.Drawing.Size(154, 29);
-            this.lblStartTitle.TabIndex = 9;
-            this.lblStartTitle.Text = "Giá khởi điểm";
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Firebrick;
+            this.label2.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.ForeColor = System.Drawing.Color.Gold;
+            this.label2.Location = new System.Drawing.Point(-2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 63);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "🏷️";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // lblPrice
             // 
@@ -145,6 +136,16 @@
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
             // 
+            // lblStartTitle
+            // 
+            this.lblStartTitle.AutoSize = true;
+            this.lblStartTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblStartTitle.Location = new System.Drawing.Point(97, 0);
+            this.lblStartTitle.Name = "lblStartTitle";
+            this.lblStartTitle.Size = new System.Drawing.Size(154, 29);
+            this.lblStartTitle.TabIndex = 9;
+            this.lblStartTitle.Text = "Giá khởi điểm";
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Firebrick;
@@ -155,6 +156,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(378, 65);
             this.panel1.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.ForeColor = System.Drawing.Color.Gold;
+            this.label1.Location = new System.Drawing.Point(0, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 63);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "📦";
             // 
             // lblProductTitle
             // 
@@ -177,6 +190,29 @@
             this.lblProduct.TabIndex = 8;
             this.lblProduct.Text = "iPhone 15 Pro Max";
             this.lblProduct.Click += new System.EventHandler(this.lblProduct_Click);
+            // 
+            // lblSummaryTitle
+            // 
+            this.lblSummaryTitle.AutoSize = true;
+            this.lblSummaryTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblSummaryTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblSummaryTitle.Location = new System.Drawing.Point(3, 4);
+            this.lblSummaryTitle.Name = "lblSummaryTitle";
+            this.lblSummaryTitle.Size = new System.Drawing.Size(294, 32);
+            this.lblSummaryTitle.TabIndex = 0;
+            this.lblSummaryTitle.Text = "📊 AUCTION SUMMARY";
+            // 
+            // lblCurrentTitle
+            // 
+            this.lblCurrentTitle.AutoSize = true;
+            this.lblCurrentTitle.BackColor = System.Drawing.Color.Firebrick;
+            this.lblCurrentTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblCurrentTitle.Location = new System.Drawing.Point(97, 0);
+            this.lblCurrentTitle.Name = "lblCurrentTitle";
+            this.lblCurrentTitle.Size = new System.Drawing.Size(126, 29);
+            this.lblCurrentTitle.TabIndex = 1;
+            this.lblCurrentTitle.Text = "Giá hiện tại";
+            this.lblCurrentTitle.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblTime
             // 
@@ -220,17 +256,6 @@
             this.lblWinnerTitle.TabIndex = 3;
             this.lblWinnerTitle.Text = "Winner ";
             this.lblWinnerTitle.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // lblSummaryTitle
-            // 
-            this.lblSummaryTitle.AutoSize = true;
-            this.lblSummaryTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblSummaryTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblSummaryTitle.Location = new System.Drawing.Point(3, 4);
-            this.lblSummaryTitle.Name = "lblSummaryTitle";
-            this.lblSummaryTitle.Size = new System.Drawing.Size(294, 32);
-            this.lblSummaryTitle.TabIndex = 0;
-            this.lblSummaryTitle.Text = "📊 AUCTION SUMMARY";
             // 
             // panelLog
             // 
@@ -317,6 +342,17 @@
             this.panel2.Size = new System.Drawing.Size(378, 67);
             this.panel2.TabIndex = 14;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(-2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 63);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "⏱";
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Firebrick;
@@ -328,6 +364,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(378, 67);
             this.panel3.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.ForeColor = System.Drawing.Color.Gold;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 64);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "👑";
             // 
             // panel4
             // 
@@ -341,31 +388,6 @@
             this.panel4.Size = new System.Drawing.Size(378, 67);
             this.panel4.TabIndex = 14;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.ForeColor = System.Drawing.Color.Gold;
-            this.label1.Location = new System.Drawing.Point(0, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 63);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "📦";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Firebrick;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.ForeColor = System.Drawing.Color.Gold;
-            this.label2.Location = new System.Drawing.Point(-2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 63);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "🏷️";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -376,28 +398,6 @@
             this.label3.Size = new System.Drawing.Size(93, 63);
             this.label3.TabIndex = 15;
             this.label3.Text = "💰";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label7.ForeColor = System.Drawing.Color.Gold;
-            this.label7.Location = new System.Drawing.Point(0, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 64);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "👑";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Bahnschrift", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.ForeColor = System.Drawing.Color.Gold;
-            this.label8.Location = new System.Drawing.Point(-2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 63);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "⏱";
             // 
             // Form1
             // 

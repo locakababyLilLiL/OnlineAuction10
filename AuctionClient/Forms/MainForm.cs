@@ -17,7 +17,7 @@ namespace AuctionClient.Forms
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e) 
         {
             dgvAuctions.Columns.Clear();
 
@@ -28,18 +28,17 @@ namespace AuctionClient.Forms
 
             dgvAuctions.Columns["ImageFile"].Visible = false;
 
-            dgvAuctions.Rows.Add("1", "IPhone 15", "2000", "iphone-15-xanh.jpg");
-            dgvAuctions.Rows.Add("2", "Đồng hồ Casio", "50000", "Casio.jpg");
+            dgvAuctions.Rows.Add("1", "Đồng hồ Casio", "50000", "Casio.jpg");
 
             dgvAuctions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAuctions.MultiSelect = false;
         }
 
-        private void btnJoin_Click(object sender, EventArgs e)
+        private void btnJoin_Click(object sender, EventArgs e)    
         {
             if (dgvAuctions.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn một phiên đấu giá!");
+                MessageBox.Show(" ");
                 return;
             }
 

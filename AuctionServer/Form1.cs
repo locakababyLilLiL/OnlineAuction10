@@ -24,6 +24,8 @@ namespace AuctionServer
         List<TcpClient> clients = new List<TcpClient>();
         List<User> users = new List<User>();
 
+        readonly string userFilePath = Path.Combine(Application.StartupPath, "users.txt");
+
         Dictionary<string, AuctionRoom> rooms = new Dictionary<string, AuctionRoom>();
 
         bool isRunning = false;
@@ -34,6 +36,7 @@ namespace AuctionServer
         {
             InitializeComponent();
             InitRooms();
+            LoadUsers();
         }
         private void InitRooms()
         {
@@ -41,20 +44,9 @@ namespace AuctionServer
 
             rooms["1"] = new AuctionRoom
             {
-                AuctionId = "1",
-                ItemName = "IPhone 15 Pro Max",
-                StartPrice = 2000,
-                CurrentPrice = 0,
-                HighestBidder = "Chưa có",
-                EndTime = DateTime.Now.AddMinutes(5),
-                AuctionEnded = false
-            };
-
-            rooms["2"] = new AuctionRoom
-            {
                 AuctionId = "2",
                 ItemName = "Đồng hồ Casio",
-                StartPrice = 50000,
+                StartPrice = 10000,
                 CurrentPrice = 0,
                 HighestBidder = "Chưa có",
                 EndTime = DateTime.Now.AddMinutes(5),
@@ -107,6 +99,45 @@ namespace AuctionServer
 
             rtbLog.AppendText(DateTime.Now.ToString("HH:mm:ss") + " - " + text + Environment.NewLine);
             rtbLog.ScrollToCaret();
+        }
+        private void LoadUsers()
+        {
+            users.Clear();
+
+            if (!File.Exists(userFilePath))
+                return;
+
+            string[] lines = File.ReadAllLines(userFilePath);
+
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                string[] parts = line.Split('|');
+
+                if (parts.Length >= 2)
+                {
+                    users.Add(new User
+                    {
+                        Username = parts[0],
+                        Password = parts[1]
+                    });
+                }
+            }
+
+            AddLog("Đã tải " + users.Count + " tài khoản từ file.");
+        }
+        private void SaveUsers()
+        {
+            List<string> lines = new List<string>();
+
+            foreach (User u in users)
+            {
+                lines.Add(u.Username + "|" + u.Password);
+            }
+
+            File.WriteAllLines(userFilePath, lines);
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -250,6 +281,8 @@ namespace AuctionServer
                             Username = username,
                             Password = password
                         });
+
+                        SaveUsers();
 
                         Send(stream, "REGISTER_OK|Đăng ký thành công");
                         AddLog("Đăng ký tài khoản mới: " + username);

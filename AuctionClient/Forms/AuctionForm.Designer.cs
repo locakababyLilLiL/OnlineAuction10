@@ -103,9 +103,9 @@
             this.lblItem.ForeColor = System.Drawing.SystemColors.Desktop;
             this.lblItem.Location = new System.Drawing.Point(414, 63);
             this.lblItem.Name = "lblItem";
-            this.lblItem.Size = new System.Drawing.Size(498, 45);
+            this.lblItem.Size = new System.Drawing.Size(404, 45);
             this.lblItem.TabIndex = 6;
-            this.lblItem.Text = "📦 Item: Laptop | ID: 1               \r\n";
+            this.lblItem.Text = "📦 Item:____| ID:_              \r\n";
             // 
             // btnBack
             // 

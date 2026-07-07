@@ -41,7 +41,7 @@
             this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJoin.ForeColor = System.Drawing.Color.Azure;
-            this.btnJoin.Location = new System.Drawing.Point(12, 62);
+            this.btnJoin.Location = new System.Drawing.Point(12, 72);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(127, 41);
             this.btnJoin.TabIndex = 0;
@@ -53,24 +53,24 @@
             // 
             this.dgvAuctions.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvAuctions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuctions.Location = new System.Drawing.Point(12, 109);
+            this.dgvAuctions.Location = new System.Drawing.Point(12, 119);
             this.dgvAuctions.Name = "dgvAuctions";
             this.dgvAuctions.RowHeadersWidth = 62;
             this.dgvAuctions.RowTemplate.Height = 28;
-            this.dgvAuctions.Size = new System.Drawing.Size(882, 457);
+            this.dgvAuctions.Size = new System.Drawing.Size(655, 379);
             this.dgvAuctions.TabIndex = 1;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblUser.BackColor = System.Drawing.Color.Lavender;
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblUser.Location = new System.Drawing.Point(12, 9);
+            this.lblUser.Location = new System.Drawing.Point(22, 18);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(298, 37);
+            this.lblUser.Size = new System.Drawing.Size(636, 37);
             this.lblUser.TabIndex = 2;
-            this.lblUser.Text = "Welcome: user123";
+            this.lblUser.Text = "CHÀO MỪNG ĐẾN VỚI PHIÊN ĐẤU GIÁ";
             // 
             // btnBack
             // 
@@ -78,7 +78,7 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBack.Location = new System.Drawing.Point(145, 62);
+            this.btnBack.Location = new System.Drawing.Point(544, 72);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(123, 41);
             this.btnBack.TabIndex = 4;
@@ -91,7 +91,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(906, 578);
+            this.ClientSize = new System.Drawing.Size(698, 518);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.dgvAuctions);
