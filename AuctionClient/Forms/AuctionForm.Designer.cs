@@ -163,7 +163,7 @@
             // 
             // picItem
             // 
-            this.picItem.Location = new System.Drawing.Point(0, 63);
+            this.picItem.Location = new System.Drawing.Point(-6, 65);
             this.picItem.Name = "picItem";
             this.picItem.Size = new System.Drawing.Size(490, 317);
             this.picItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
